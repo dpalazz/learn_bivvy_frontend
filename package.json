@@ -1,0 +1,22 @@
+{
+  "name": "learn_bivvy_frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpalazz/learn_bivvy_frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dpalazz/learn_bivvy_frontend/issues"
+  },
+  "homepage": "https://github.com/dpalazz/learn_bivvy_frontend#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}

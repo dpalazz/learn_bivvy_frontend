@@ -56,7 +56,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   });
 
   $routeProvider.when('/pagetwo', {
-    templateUrl: 'pagetwo.html',
+    templateUrl: './partials/pagetwo.html',
     controller: 'PageTwoController',
     controllerAs: 'ctrl'
   });
