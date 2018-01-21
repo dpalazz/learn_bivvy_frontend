@@ -9,7 +9,8 @@
   </head>
   <body>
     <h1>Sewer</h1>
-    {{ctrl.test}}
-    {{2+2}}
+    <div ng-repeat="lesson in ctrl.lessons">
+      <h4>{{lesson.title}}</h4>
+    </div>
   </body>
 </html>

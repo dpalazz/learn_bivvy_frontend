@@ -3,9 +3,21 @@ const app = angular.module('LearnBivvyApp', ['ngRoute']);
 // =====================================
 // Controllers
 // ======================================
-app.controller('PageOneController', function(){
+app.controller('PageOneController', ['$http', function($http){
   this.test = 'sewer';
-});
+  this.url = 'http://localhost:3000'
+
+  $http({
+    method: 'GET',
+    url: this.url + '/lessons'
+  }).then(response => {
+    console.log(response.data);
+    this.lessons = response.data
+  }).catch(reject => {
+    console.log('Catch: ', reject);
+  });
+
+}]);
 
 app.controller('PageTwoController', function(){
   this.test = 'test';
@@ -56,7 +68,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   });
 
   $routeProvider.when('/pagetwo', {
-    templateUrl: './partials/pagetwo.html',
+    templateUrl: 'pagetwo.html',
     controller: 'PageTwoController',
     controllerAs: 'ctrl'
   });
