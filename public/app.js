@@ -11,7 +11,7 @@ app.controller('PageOneController', ['$http', function($http){
     method: 'GET',
     url: this.url + '/lessons'
   }).then(response => {
-    console.log(response.data);
+    // console.log(response.data);
     this.lessons = response.data
   }).catch(reject => {
     console.log('Catch: ', reject);
@@ -120,4 +120,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'PageTenController',
     controllerAs: 'ctrl'
   });
+
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
+
 }]);
