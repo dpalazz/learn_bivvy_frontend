@@ -3,8 +3,22 @@ const app = angular.module('LearnBivvyApp', ['ngRoute']);
 // =====================================
 // Controllers
 // ======================================
+app.controller('MainController', ['$http', function($http){
+  this.url = 'http://localhost:3000'
+  this.login = (userPass) => {
+    $http({
+      method: 'POST',
+      url: this.url + '/users/login',
+      data: {user: {username: userPass.username, password: userPass.password}}
+    }).then(response => {console.log(response);
+      this.user = response.data.user;
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+    }).catch(reject => {console.log('Rejected:', reject)
+    });
+  };
+}]);
+
 app.controller('PageOneController', ['$http', function($http){
-  this.test = 'sewer';
   this.url = 'http://localhost:3000'
 
   $http({
