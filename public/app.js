@@ -5,6 +5,7 @@ const app = angular.module('LearnBivvyApp', ['ngRoute']);
 // ======================================
 app.controller('MainController', ['$http', function($http){
   this.url = 'http://localhost:3000'
+
   this.login = (userPass) => {
     $http({
       method: 'POST',
@@ -15,6 +16,30 @@ app.controller('MainController', ['$http', function($http){
       localStorage.setItem('token', JSON.stringify(response.data.token));
     }).catch(reject => {console.log('Rejected:', reject)
     });
+  };
+
+  this.getUsers = () => {
+    $http({
+      url: this.url + '/users',
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' +
+        JSON.parse(localStorage.getItem('token'))
+      }
+    }).then(response => {
+      console.log(response);
+      if (response.data.status == 401) {
+        this.error = 'Unauthorized';
+      } else {
+        this.users = response.data;
+      }
+    }).catch(reject => {console.log('Reject is:', reject)
+    });
+  };
+
+  this.logout = () => {
+    localStorage.clear('token');
+    location.reload();
   };
 }]);
 
