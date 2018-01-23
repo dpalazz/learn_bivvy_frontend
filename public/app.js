@@ -13,9 +13,9 @@ app.config(['$routeProvider', function($routeProvider){
     controllerAs: 'ctrl'
   });
 
-  $routeProvider.when('/pageone', {
-    templateUrl: 'pages/pageone.html',
-    controller: 'PageOneController',
+  $routeProvider.when('/gettingstarted', {
+    templateUrl: 'pages/gettingstarted.html',
+    controller: 'GettingStartedController',
     controllerAs: 'ctrl'
   });
   //
@@ -121,21 +121,20 @@ app.controller('MainController', function($scope){
   // };
 });
 
-app.controller('PageOneController', function($scope){
-  $scope.message = 'page one';
-  // this.url = 'http://localhost:3000'
-  //
-  // $http({
-  //   method: 'GET',
-  //   url: this.url + '/lessons'
-  // }).then(response => {
-  //   // console.log(response.data);
-  //   this.lessons = response.data
-  // }).catch(reject => {
-  //   console.log('Catch: ', reject);
-  // });
+app.controller('GettingStartedController', ['$http', function($http, $scope){
+  this.url = 'http://localhost:3000'
 
-});
+  $http({
+    method: 'GET',
+    url: this.url + '/lessons'
+  }).then(response => {
+    console.log(response.data);
+    this.lessons = response.data
+  }).catch(reject => {
+    console.log('Catch: ', reject);
+  });
+
+}]);
 
 // app.controller('PageTwoController', function(){
 //   this.test = 'test';
