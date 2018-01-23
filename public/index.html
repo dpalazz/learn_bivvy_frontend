@@ -1,44 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="LearnBivvyApp">
   <head>
     <meta charset="utf-8">
     <title>Learn Bivvy</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="app.js"></script>
-    <base href="/" target="_blank">
   </head>
-  <body ng-app="LearnBivvyApp">
-    <div ng-controller="MainController as ctrl">
-      <nav>
-        <ul>
-          <li><a href="/">Home (/)</a></li>
-          <li><a href="/pageone">Page 1</a></li>
-          <li><a href="/pagetwo">Page 2</a></li>
-          <li><a href="/pagethree">Page 3</a></li>
-          <li><a href="/pagefour">Page 4</a></li>
-          <li><a href="/pagefive">Page 5</a></li>
-          <li><a href="/pagesix">Page 6</a></li>
-          <li><a href="/pageseven">Page 7</a></li>
-          <li><a href="/pageeight">Page 8</a></li>
-          <li><a href="/pagenine">Page 9</a></li>
-          <li><a href="/pageten">Page 10</a></li>
-        </ul>
-      </nav>
-      <form ng-submit="ctrl.login(userPass)">
-        <input type="text" ng-model="userPass.username" placeholder="username">
-        <input type="password" ng-model="userPass.password" placeholder="password">
-        <input type="submit">
-      </form>
-      <p>Logged in username: {{ctrl.user.username}}</p>
-      <a href="#" ng-click="ctrl.logout()">Logout</a>
-      <h4 ng-click="ctrl.getUsers()">Click to see users</h4>
-      <div>{{ctrl.error}}</div>
-      <div ng-repeat="user in ctrl.users">
-        <h1>{{user.username}}</h1>
-      </div>
+  <body ng-controller="MainController">
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#pageone">Page 1</a></li>
+        <li><a href="#pagetwo">Page 2</a></li>
+        <li><a href="#pagethree">Page 3</a></li>
+        <li><a href="#pagefour">Page 4</a></li>
+        <li><a href="#pagefive">Page 5</a></li>
+        <li><a href="#pagesix">Page 6</a></li>
+        <li><a href="#pageseven">Page 7</a></li>
+        <li><a href="#pageeight">Page 8</a></li>
+        <li><a href="#pagenine">Page 9</a></li>
+        <li><a href="#pageten">Page 10</a></li>
+      </ul>
+    </nav>
+    <div>
+      <div ng-view></div>
     </div>
-    <main ng-view></main>
   </body>
 </html>
