@@ -4,9 +4,6 @@ const app = angular.module('LearnBivvyApp', ['ngRoute']);
 // Config Routes
 // =====================================
 app.config(['$routeProvider', function($routeProvider){
-
-  // $locationProvider.html5Mode(true);
-
   $routeProvider.when('/', {
     templateUrl: 'pages/home.html',
     controller: 'MainController',
@@ -16,6 +13,12 @@ app.config(['$routeProvider', function($routeProvider){
   $routeProvider.when('/gettingstarted', {
     templateUrl: 'pages/gettingstarted.html',
     controller: 'GettingStartedController',
+    controllerAs: 'ctrl'
+  });
+
+  $routeProvider.when('/sewer', {
+    templateUrl: 'pages/sewer.html',
+    controller: 'SewerController',
     controllerAs: 'ctrl'
   });
   //
@@ -81,61 +84,61 @@ app.config(['$routeProvider', function($routeProvider){
 // =====================================
 // Controllers
 // ======================================
-app.controller('MainController', function($scope){
-  $scope.message = 'message';
-  // this.url = 'http://localhost:3000'
-  // this.login = (userPass) => {
-  //   $http({
-  //     method: 'POST',
-  //     url: this.url + '/users/login',
-  //     data: {user: {username: userPass.username, password: userPass.password}}
-  //   }).then(response => {console.log(response);
-  //     this.user = response.data.user;
-  //     localStorage.setItem('token', JSON.stringify(response.data.token));
-  //   }).catch(reject => {console.log('Rejected:', reject)
-  //   });
-  // };
-  //
-  // this.getUsers = () => {
-  //   $http({
-  //     url: this.url + '/users',
-  //     method: 'GET',
-  //     headers: {
-  //       Authorization: 'Bearer ' +
-  //       JSON.parse(localStorage.getItem('token'))
-  //     }
-  //   }).then(response => {
-  //     console.log(response);
-  //     if (response.data.status == 401) {
-  //       this.error = 'Unauthorized';
-  //     } else {
-  //       this.users = response.data;
-  //     }
-  //   }).catch(reject => {console.log('Reject is:', reject)
-  //   });
-  // };
-  //
-  // this.logout = () => {
-  //   localStorage.clear('token');
-  //   location.reload();
-  // };
-});
-
-app.controller('GettingStartedController', ['$http', function($http, $scope){
+app.controller('MainController', ['$http', function($http, $scope){
   this.url = 'http://localhost:3000'
+  this.login = (userPass) => {
+    $http({
+      method: 'POST',
+      url: this.url + '/users/login',
+      data: {user: {username: userPass.username, password: userPass.password}}
+    }).then(response => {console.log(response);
+      this.user = response.data.user;
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+    }).catch(reject => {console.log('Rejected:', reject)
+    });
+  };
+
+  this.logout = () => {
+    localStorage.clear('token');
+    location.reload();
+  };
 
   $http({
     method: 'GET',
     url: this.url + '/lessons'
   }).then(response => {
-    console.log(response.data);
     this.lessons = response.data
+  }).catch(reject => {
+    console.log('Catch: ', reject);
+  });
+
+  $http({
+    method: 'GET',
+    url: this.url + '/services'
+  }).then(response => {
+    this.services = response.data
   }).catch(reject => {
     console.log('Catch: ', reject);
   });
 
 }]);
 
+app.controller('GettingStartedController', ['$http', function($http, $scope){
+  this.url = 'http://localhost:3000'
+  $http({
+    method: 'GET',
+    url: this.url + '/lessons'
+  }).then(response => {
+    this.user = user
+    this.lessons = response.data
+  }).catch(reject => {
+    console.log('Catch: ', reject);
+  });
+}]);
+
+app.controller('SewerController', ['$http', function($http, $scope){
+
+}]);
 // app.controller('PageTwoController', function(){
 //   this.test = 'test';
 // });
@@ -171,3 +174,25 @@ app.controller('GettingStartedController', ['$http', function($http, $scope){
 // app.controller('PageTenController', function(){
 //   this.test = 'test';
 // });
+
+
+
+  //
+  // this.getUsers = () => {
+  //   $http({
+  //     url: this.url + '/users',
+  //     method: 'GET',
+  //     headers: {
+  //       Authorization: 'Bearer ' +
+  //       JSON.parse(localStorage.getItem('token'))
+  //     }
+  //   }).then(response => {
+  //     console.log(response);
+  //     if (response.data.status == 401) {
+  //       this.error = 'Unauthorized';
+  //     } else {
+  //       this.users = response.data;
+  //     }
+  //   }).catch(reject => {console.log('Reject is:', reject)
+  //   });
+  // };

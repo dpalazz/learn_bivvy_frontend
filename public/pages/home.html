@@ -1,2 +1,27 @@
-<h1>Master Bivvy in 15 minutes.</h1>
-<h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper vel libero dignissim varius. Nulla a accumsan velit. Praesent id tortor vel urna suscipit mollis id a eros.</h4>
+<!-- If user is not logged in -->
+<div ng-if="!ctrl.user">
+  <h1>Log in to Learn Bivvy App</h1>
+  <form ng-submit="ctrl.login(userPass)">
+    <input type="text" ng-model="userPass.username" placeholder="username">
+    <input type="password" ng-model="userPass.password" placeholder="password">
+    <input type="submit">
+  </form>
+  <div>{{ctrl.error}}</div>
+</div>
+
+<!-- If user is logged in -->
+<div ng-if="ctrl.user">
+  <p>Welcome, {{ctrl.user.username}}!</p>
+  <a href="#" ng-click="ctrl.logout()">Logout</a>
+</div>
+
+<div ng-if="ctrl.user" class="container">
+  <h1>My Services</h1>
+  <div ng-repeat="service in ctrl.services">
+    <h2>{{service.name}}</h2>
+  </div>
+  <h1>My Lessons</h1>
+  <div ng-repeat="lesson in ctrl.lessons">
+    <h2>{{lesson.title}}</h2>
+  </div>
+</div>
