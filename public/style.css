@@ -1,0 +1,83 @@
+.top-headline h1 {
+  /*font-family: 'Aktiv Grotesk';*/
+  font-size: 40px;
+  letter-spacing: -0.3px;
+  text-align: center;
+  color: #2d3338;
+}
+
+.top-headline h4 {
+  /*font-family: 'Aktiv Grotesk';*/
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.39;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #a3a7aa;
+}
+
+.inner-container {
+  margin: auto;
+  max-width: 90%;
+  background-color: white;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  border: solid 0.5px #d1d3d5;
+  text-align: center;
+}
+
+.inner-container h2 {
+  /*font-family: 'Aktiv Grotesk';*/
+  font-size: 18px;
+  line-height: 0.85;
+  letter-spacing: -0.2px;
+  text-align: left;
+  color: #0d89e2;
+}
+
+.inner-container h3 {
+  /*font-family: 'Aktiv Grotesk';*/
+  font-size: 16px;
+  line-height: 1.38;
+  letter-spacing: -0.1px;
+  text-align: left;
+  color: #2d3338;
+}
+
+#time {
+  letter-spacing: -0.2px;
+  text-align: left;
+  color: #a3a7aa;
+}
+
+hr {
+  width: inherit;
+  border: solid 0.5px #ededee;
+  margin-top: 40px;
+}
+
+.routes {
+  display: none;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+h2 {
+  /*font-family: 'Aktiv Grotesk';*/
+  font-size: 30px;
+  letter-spacing: -0.3px;
+  color: #2d3338;
+  text-align: center;
+}
+
+h4 {
+  font-family: 'Aktiv Grotesk';
+  font-size: 16px;
+  letter-spacing: -0.2px;
+  color: #007cdc;
+}
