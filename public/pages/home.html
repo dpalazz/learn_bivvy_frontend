@@ -22,7 +22,7 @@
     <button type="button" name="edit" ng-click="ctrl.openForm()">Edit</button>
     <form ng-if="ctrl.form" ng-submit="ctrl.editService(service)">
       <input type="text" ng-model="ctrl.formDataService.name" placeholder="Name">
-      <input type="submit" ng-click="ctrl.form"/>
+      <input type="submit"/>
     </form>
     <button type="button" name="delete" ng-click="ctrl.deleteService(service)">Remove</button>
   </div>
@@ -30,7 +30,7 @@
     <button type="button" name="add service" ng-click="ctrl.openAddServiceForm()">Add New Service</button>
     <form ng-if="ctrl.serviceForm" ng-submit="ctrl.addService()">
       <input type="text" ng-model="ctrl.formDataService.name" placeholder="Name">
-      <input type="submit" ng-click="ctrl.Addform"/>
+      <input type="submit"/>
     </form>
   </div>
   <h1>My Lessons</h1>
@@ -39,7 +39,7 @@
     <button type="button" name="edit" ng-click="ctrl.openForm()">Edit</button>
     <form ng-if="ctrl.form" ng-submit="ctrl.editLesson(lesson)">
       <input type="text" ng-model="ctrl.formDataLesson.name" placeholder="Name">
-      <input type="submit" ng-click="ctrl.form"/>
+      <input type="submit"/>
     </form>
     <button type="button" name="delete" ng-click="ctrl.deleteLesson(lesson)">Remove</button>
   </div>
@@ -49,7 +49,7 @@
       <input type="text" ng-model="ctrl.formDataLesson.title" placeholder="Title">
       <input type="text" ng-model="ctrl.formDataLesson.description" placeholder="Description">
       <input type="text" ng-model="ctrl.formDataLesson.video_url" placeholder="Video URL">
-      <input type="submit" ng-click="ctrl.form"/>
+      <input type="submit"/>
     </form>
   </div>
 </div>

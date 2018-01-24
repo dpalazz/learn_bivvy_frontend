@@ -84,6 +84,8 @@ app.config(['$routeProvider', function($routeProvider){
 // =====================================
 // Controllers
 // ======================================
+
+// ********************Main********************
 app.controller('MainController', ['$http', function($http, $scope){
 
   // API
@@ -170,17 +172,26 @@ app.controller('MainController', ['$http', function($http, $scope){
       url: this.url + '/lessons',
       data: this.formDataLesson
     }).then(response => {
-      console.log(response);
       this.getAllLessons();
+      this.lessonForm = false;
     }).catch(reject => {
       console.log('Catch', reject);
-    })
-  }
+    });
+  };
 
   // Create Service
   this.addService = () => {
-
-  }
+    $http({
+      method: 'POST',
+      url: this.url + '/services',
+      data: this.formDataService
+    }).then(response => {
+      this.getAllServices();
+      this.serviceForm = false;
+    }).catch(reject => {
+      console.log('Catch', reject);
+    });
+  };
 
   // Edit Lesson
   this.editLesson = (lesson) => {
@@ -190,7 +201,7 @@ app.controller('MainController', ['$http', function($http, $scope){
       data: this.formDataLesson
     }).then(response => {
       this.getAllLessons();
-      this.formDataLesson = {};
+      this.form = false;
     }).catch(reject => {
       console.log('Catch', reject)
     });
@@ -204,7 +215,7 @@ app.controller('MainController', ['$http', function($http, $scope){
       data: this.formDataService
     }).then(response => {
       this.getAllServices();
-      this.formDataService = {};
+      this.form = false;
     }).catch(reject => {
       console.log('Catch', reject)
     });
@@ -233,9 +244,9 @@ app.controller('MainController', ['$http', function($http, $scope){
       console.log('Catch', reject);
     });
   };
-
 }]);
 
+// ********************Getting Started********************
 app.controller('GettingStartedController', ['$http', function($http, $scope){
 
   // API
@@ -255,9 +266,11 @@ app.controller('GettingStartedController', ['$http', function($http, $scope){
 app.controller('SewerController', ['$http', function($http, $scope){
 
 }]);
-// app.controller('PageTwoController', function(){
-//   this.test = 'test';
-// });
+
+// ********************Sewer********************
+app.controller('SewerController', function(){
+  this.test = 'test';
+});
 //
 // app.controller('PageThreeController', function(){
 //   this.test = 'test';
