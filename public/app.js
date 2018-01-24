@@ -105,6 +105,9 @@ app.controller('MainController', ['$http', function($http, $scope){
   this.openAddLessonForm = () => {
     this.lessonForm = true;
   }
+  this.openLinkForm = () => {
+    this.linkForm = true;
+  }
   this.getAllServices = () => {
     $http({
       method: 'GET',
