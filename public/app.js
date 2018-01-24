@@ -85,24 +85,65 @@ app.config(['$routeProvider', function($routeProvider){
 // Controllers
 // ======================================
 app.controller('MainController', ['$http', function($http, $scope){
+
+  // API
   this.url = 'http://localhost:3000'
+
+  // Global variables
+  this.form = false;
+  this.formDataService = {};
+  this.formDataLesson = {};
+  this.service = null;
+  this.openForm = () => {
+    this.form = true;
+  }
+  this.openAddServiceForm = () => {
+    this.serviceForm = true;
+  }
+  this.openAddLessonForm = () => {
+    this.lessonForm = true;
+  }
+  this.getAllServices = () => {
+    $http({
+      method: 'GET',
+      url: this.url + '/services'
+    }).then(response => {
+      this.services = response.data
+    }).catch(reject => {
+      console.log('Catch: ', reject);
+    });
+  }
+  this.getAllLessons = () => {
+    $http({
+      method: 'GET',
+      url: this.url + '/lessons'
+    }).then(response => {
+      this.lessons = response.data
+    }).catch(reject => {
+      console.log('Catch: ', reject);
+    });
+  }
+
+  // User login
   this.login = (userPass) => {
     $http({
       method: 'POST',
       url: this.url + '/users/login',
       data: {user: {username: userPass.username, password: userPass.password}}
-    }).then(response => {console.log(response);
+    }).then(response => {
       this.user = response.data.user;
       localStorage.setItem('token', JSON.stringify(response.data.token));
     }).catch(reject => {console.log('Rejected:', reject)
     });
   };
 
+  // User logout
   this.logout = () => {
     localStorage.clear('token');
     location.reload();
   };
 
+  // Lesson Data
   $http({
     method: 'GET',
     url: this.url + '/lessons'
@@ -112,6 +153,7 @@ app.controller('MainController', ['$http', function($http, $scope){
     console.log('Catch: ', reject);
   });
 
+  // Services Data
   $http({
     method: 'GET',
     url: this.url + '/services'
@@ -121,15 +163,89 @@ app.controller('MainController', ['$http', function($http, $scope){
     console.log('Catch: ', reject);
   });
 
+  // Create Lesson
+  this.addLesson = () => {
+    $http({
+      method: 'POST',
+      url: this.url + '/lessons',
+      data: this.formDataLesson
+    }).then(response => {
+      console.log(response);
+      this.getAllLessons();
+    }).catch(reject => {
+      console.log('Catch', reject);
+    })
+  }
+
+  // Create Service
+  this.addService = () => {
+
+  }
+
+  // Edit Lesson
+  this.editLesson = (lesson) => {
+    $http({
+      method: 'PUT',
+      url: this.url + '/lessons/' + lesson.id,
+      data: this.formDataLesson
+    }).then(response => {
+      this.getAllLessons();
+      this.formDataLesson = {};
+    }).catch(reject => {
+      console.log('Catch', reject)
+    });
+  };
+
+  // Edit Service
+  this.editService = (service) => {
+    $http({
+      method: 'PUT',
+      url: this.url + '/services/' + service.id,
+      data: this.formDataService
+    }).then(response => {
+      this.getAllServices();
+      this.formDataService = {};
+    }).catch(reject => {
+      console.log('Catch', reject)
+    });
+  };
+
+  // Delete Lesson
+  this.deleteLesson = (lesson) => {
+    $http({
+      method: 'DELETE',
+      url: this.url + '/lessons/' + lesson.id
+    }).then(response => {
+      this.getAllLessons();
+    }).catch(reject => {
+      console.log('Catch', reject);
+    });
+  };
+
+  // Delete Service
+  this.deleteService = (service) => {
+    $http({
+      method: 'DELETE',
+      url: this.url + '/services/' + service.id
+    }).then(response => {
+      this.getAllServices();
+    }).catch(reject => {
+      console.log('Catch', reject);
+    });
+  };
+
 }]);
 
 app.controller('GettingStartedController', ['$http', function($http, $scope){
+
+  // API
   this.url = 'http://localhost:3000'
+
+  // Lesson Data
   $http({
     method: 'GET',
     url: this.url + '/lessons'
   }).then(response => {
-    this.user = user
     this.lessons = response.data
   }).catch(reject => {
     console.log('Catch: ', reject);

@@ -19,9 +19,37 @@
   <h1>My Services</h1>
   <div ng-repeat="service in ctrl.services">
     <h2>{{service.name}}</h2>
+    <button type="button" name="edit" ng-click="ctrl.openForm()">Edit</button>
+    <form ng-if="ctrl.form" ng-submit="ctrl.editService(service)">
+      <input type="text" ng-model="ctrl.formDataService.name" placeholder="Name">
+      <input type="submit" ng-click="ctrl.form"/>
+    </form>
+    <button type="button" name="delete" ng-click="ctrl.deleteService(service)">Remove</button>
+  </div>
+  <div>
+    <button type="button" name="add service" ng-click="ctrl.openAddServiceForm()">Add New Service</button>
+    <form ng-if="ctrl.serviceForm" ng-submit="ctrl.addService()">
+      <input type="text" ng-model="ctrl.formDataService.name" placeholder="Name">
+      <input type="submit" ng-click="ctrl.Addform"/>
+    </form>
   </div>
   <h1>My Lessons</h1>
   <div ng-repeat="lesson in ctrl.lessons">
     <h2>{{lesson.title}}</h2>
+    <button type="button" name="edit" ng-click="ctrl.openForm()">Edit</button>
+    <form ng-if="ctrl.form" ng-submit="ctrl.editLesson(lesson)">
+      <input type="text" ng-model="ctrl.formDataLesson.name" placeholder="Name">
+      <input type="submit" ng-click="ctrl.form"/>
+    </form>
+    <button type="button" name="delete" ng-click="ctrl.deleteLesson(lesson)">Remove</button>
+  </div>
+  <div>
+    <button type="button" name="add lesson" ng-click="ctrl.openAddLessonForm()">Add New Lesson</button>
+    <form ng-if="ctrl.lessonForm" ng-submit="ctrl.addLesson()">
+      <input type="text" ng-model="ctrl.formDataLesson.title" placeholder="Title">
+      <input type="text" ng-model="ctrl.formDataLesson.description" placeholder="Description">
+      <input type="text" ng-model="ctrl.formDataLesson.video_url" placeholder="Video URL">
+      <input type="submit" ng-click="ctrl.form"/>
+    </form>
   </div>
 </div>
