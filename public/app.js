@@ -96,6 +96,7 @@ app.controller('MainController', ['$http', function($http, $scope){
   this.formDataService = {};
   this.formDataLesson = {};
   this.service = null;
+  this.serviceTag = [];
   this.openForm = () => {
     this.form = true;
   }
@@ -154,6 +155,13 @@ app.controller('MainController', ['$http', function($http, $scope){
     url: this.url + '/lessons'
   }).then(response => {
     this.lessons = response.data
+    // console.log(this.lessons);
+    for (let i = 0; i < this.lessons.length; i++) {
+      // console.log(this.lessons[i].services)
+      for (var j = 0; j < this.lessons[i].services.length; j++) {
+        this.serviceTag.push(this.lessons[i].services[j].name)
+      }
+    }
   }).catch(reject => {
     console.log('Catch: ', reject);
   });
@@ -168,8 +176,26 @@ app.controller('MainController', ['$http', function($http, $scope){
     console.log('Catch: ', reject);
   });
 
+  // Lessonplans Data// Services Data
+  $http({
+    method: 'GET',
+    url: this.url + '/lessonplans'
+  }).then(response => {
+    this.lessonplans = response.data
+  }).catch(reject => {
+    console.log('Catch: ', reject);
+  });
+
   // Create Lesson
   this.addLesson = () => {
+    let newServiceId = 0;
+
+    for (let i = 0; i < this.services.length; i++) {
+      if (this.services[i].name == this.formDataLesson.services) {
+        newServiceId = this.services[i].id
+      }
+    }
+
     $http({
       method: 'POST',
       url: this.url + '/lessons',
@@ -177,6 +203,16 @@ app.controller('MainController', ['$http', function($http, $scope){
     }).then(response => {
       this.getAllLessons();
       this.lessonForm = false;
+    }).catch(reject => {
+      console.log('Catch', reject);
+    });
+
+    $http({
+      method: 'POST',
+      url: this.url + '/lessonplans',
+      data: {lesson_id: this.lessons[this.lessons.length - 1].id, service_id: newServiceId}
+    }).then(response => {
+      console.log(this.lessonplans);
     }).catch(reject => {
       console.log('Catch', reject);
     });
