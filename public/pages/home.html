@@ -1,0 +1,69 @@
+<!-- If user is not logged in -->
+<div ng-if="!ctrl.user">
+  <h1>Log in to Learn Bivvy App</h1>
+  <form ng-submit="ctrl.login(userPass)">
+    <input type="text" ng-model="userPass.username" placeholder="username">
+    <input type="password" ng-model="userPass.password" placeholder="password">
+    <input type="submit">
+  </form>
+  <div>{{ctrl.error}}</div>
+</div>
+
+<!-- If user is logged in -->
+<div ng-if="ctrl.user">
+  <p>Welcome, {{ctrl.user.username}}!</p>
+  <a href="#" ng-click="ctrl.logout()">Logout</a>
+</div>
+
+<div ng-if="ctrl.user" class="container">
+  <h1>My Services</h1>
+  <div>
+    <button type="button" name="add service" ng-click="ctrl.openAddServiceForm()">Add New Service</button>
+    <form ng-if="ctrl.serviceForm" ng-submit="ctrl.addService()">
+      <input type="text" ng-model="ctrl.formDataService.name" placeholder="Name">
+      <input type="submit"/>
+    </form>
+  </div>
+  <div ng-repeat="service in ctrl.services">
+    <h3>{{service.name}}</h3>
+    <h4>Lessons: {{service.lessons[0].title}}</h4>
+    <button type="button" name="edit" ng-click="ctrl.openForm()">Edit</button>
+    <form ng-if="ctrl.form" ng-submit="ctrl.editService(service)">
+      <input type="text" ng-model="ctrl.formDataService.name" placeholder="Name">
+      <input type="submit"/>
+    </form>
+    <button type="button" name="delete" ng-click="ctrl.deleteService(service)">Remove</button>
+  </div>
+  <h1>My Lessons</h1>
+  <div>
+    <button type="button" name="add lesson" ng-click="ctrl.openAddLessonForm()">Add New Lesson</button>
+    <form ng-if="ctrl.lessonForm" ng-submit="ctrl.addLesson()">
+      <input type="text" ng-model="ctrl.formDataLesson.title" placeholder="Title">
+      <input type="text" ng-model="ctrl.formDataLesson.description" placeholder="Description">
+      <input type="text" ng-model="ctrl.formDataLesson.video_url" placeholder="Video URL">
+      <select ng-model="ctrl.formDataLesson.services">
+        <option ng-repeat="service in ctrl.services" value="{{service.name}}">{{service.name}}</option>
+      </select>
+      <input type="submit"/>
+    </form>
+  </div>
+  <div ng-repeat="lesson in ctrl.lessons">
+    <h3>{{lesson.title}}</h3>
+    <h4>{{lesson.description}}</h4>
+    <div ng-repeat="service in lesson.services">
+      <h4>{{service.name}}</h4>
+    </div>
+    <h4>{{lesson.video_url}}</h4>
+    <button type="button" name="edit" ng-click="ctrl.openForm()">Edit</button>
+    <form ng-if="ctrl.form" ng-submit="ctrl.editLesson(lesson)">
+      <input type="text" ng-model="ctrl.formDataLesson.title" placeholder="Title">
+      <input type="text" ng-model="ctrl.formDataLesson.description" placeholder="Description">
+      <input type="text" ng-model="ctrl.formDataLesson.video_url" placeholder="Video URL">
+      <select ng-model="ctrl.formDataLesson.services">
+        <option ng-repeat="service in ctrl.services" value="{{service.name}}">{{service.name}}</option>
+      </select>
+      <input type="submit"/>
+    </form>
+    <button type="button" name="delete" ng-click="ctrl.deleteLesson(lesson)">Remove</button>
+  </div>
+</div>
