@@ -26,7 +26,9 @@
   </div>
   <div ng-repeat="service in ctrl.services">
     <h3>{{service.name}}</h3>
-    <h4>Lessons: {{service.lessons[0].title}}</h4>
+    <div ng-repeat="lesson in service.lessons">
+      <h4>{{lesson.title}}</h4>
+    </div>
     <button type="button" name="edit" ng-click="ctrl.openForm()">Edit</button>
     <form ng-if="ctrl.form" ng-submit="ctrl.editService(service)">
       <input type="text" ng-model="ctrl.formDataService.name" placeholder="Name">
