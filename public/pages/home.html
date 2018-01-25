@@ -50,8 +50,8 @@
   <div ng-repeat="lesson in ctrl.lessons">
     <h3>{{lesson.title}}</h3>
     <h4>{{lesson.description}}</h4>
-    <div ng-repeat="tag in ctrl.serviceTag">
-      <h4>{{tag}}</h4>
+    <div ng-repeat="service in lesson.services">
+      <h4>{{service.name}}</h4>
     </div>
     <h4>{{lesson.video_url}}</h4>
     <button type="button" name="edit" ng-click="ctrl.openForm()">Edit</button>

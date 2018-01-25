@@ -87,7 +87,7 @@ app.config(['$routeProvider', function($routeProvider){
 
 // ********************Main********************
 app.controller('MainController', ['$http', function($http, $scope){
-
+console.log('hello');
   // API
   this.url = 'http://localhost:3000'
 
@@ -96,7 +96,7 @@ app.controller('MainController', ['$http', function($http, $scope){
   this.formDataService = {};
   this.formDataLesson = {};
   this.service = null;
-  this.serviceTag = [];
+  this.serviceTags = [];
   this.openForm = () => {
     this.form = true;
   }
@@ -155,15 +155,9 @@ app.controller('MainController', ['$http', function($http, $scope){
     url: this.url + '/lessons'
   }).then(response => {
     this.lessons = response.data
-    console.log(response.data);
-
-    // for (let i = 0; i < this.lessonplans.length; i++) {
-    //   this.tempId = this.lessonplans[i].service_id
-    //   for (let j = 0; j < this.services.length; j++) {
-    //     if (this.services[i].id == this.tempId) {
-    //       this.serviceTag.push(this.services[i].name)
-    //     }
-    //   }
+    console.log(this.lessons);
+    // for (let i = 0; i < this.lessons.length; i++) {
+      // this.serviceTag.push(this.lessons[i].services)
     // }
   }).catch(reject => {
     console.log('Catch: ', reject);
