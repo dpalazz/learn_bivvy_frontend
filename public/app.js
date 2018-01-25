@@ -155,13 +155,16 @@ app.controller('MainController', ['$http', function($http, $scope){
     url: this.url + '/lessons'
   }).then(response => {
     this.lessons = response.data
-    // console.log(this.lessons);
-    for (let i = 0; i < this.lessons.length; i++) {
-      // console.log(this.lessons[i].services)
-      for (var j = 0; j < this.lessons[i].services.length; j++) {
-        this.serviceTag.push(this.lessons[i].services[j].name)
-      }
-    }
+    console.log(response.data);
+
+    // for (let i = 0; i < this.lessonplans.length; i++) {
+    //   this.tempId = this.lessonplans[i].service_id
+    //   for (let j = 0; j < this.services.length; j++) {
+    //     if (this.services[i].id == this.tempId) {
+    //       this.serviceTag.push(this.services[i].name)
+    //     }
+    //   }
+    // }
   }).catch(reject => {
     console.log('Catch: ', reject);
   });
@@ -188,31 +191,34 @@ app.controller('MainController', ['$http', function($http, $scope){
 
   // Create Lesson
   this.addLesson = () => {
+    this.currentLesson = null;
     let newServiceId = 0;
-
     for (let i = 0; i < this.services.length; i++) {
       if (this.services[i].name == this.formDataLesson.services) {
         newServiceId = this.services[i].id
       }
     }
 
+    // lesson to post
     $http({
       method: 'POST',
       url: this.url + '/lessons',
       data: this.formDataLesson
     }).then(response => {
       this.getAllLessons();
+      this.lessons.push(response.data.lesson);
+      this.currentLesson = this.lessons[this.lessons.length - 1];
       this.lessonForm = false;
-    }).catch(reject => {
-      console.log('Catch', reject);
-    });
 
-    $http({
-      method: 'POST',
-      url: this.url + '/lessonplans',
-      data: {lesson_id: this.lessons[this.lessons.length - 1].id, service_id: newServiceId}
-    }).then(response => {
-      console.log(this.lessonplans);
+      // then lessonplan posts
+      $http({
+        method: 'POST',
+        url: this.url + '/lessonplans',
+        data: {service_id: newServiceId, lesson_id: this.currentLesson.id}
+      }).then(response => {
+      }).catch(reject => {
+        console.log('Catch', reject);
+      });
     }).catch(reject => {
       console.log('Catch', reject);
     });
