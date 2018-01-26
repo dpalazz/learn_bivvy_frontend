@@ -86,8 +86,7 @@ app.config(['$routeProvider', function($routeProvider){
 // ======================================
 
 // ********************Main********************
-app.controller('MainController', ['$http', function($http, $scope){
-console.log('hello');
+app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce){
   // API
   this.url = 'http://localhost:3000'
 
@@ -210,6 +209,7 @@ console.log('hello');
         url: this.url + '/lessonplans',
         data: {service_id: newServiceId, lesson_id: this.currentLesson.id}
       }).then(response => {
+        this.getAllLessons();
       }).catch(reject => {
         console.log('Catch', reject);
       });
@@ -286,10 +286,14 @@ console.log('hello');
 }]);
 
 // ********************Getting Started********************
-app.controller('GettingStartedController', ['$http', function($http, $scope){
+app.controller('GettingStartedController', ['$http', '$sce', function($http, $sce){
 
   // API
   this.url = 'http://localhost:3000'
+
+  // Global variables
+  this.lessonUrl = null;
+  this.currentUrl = null;
 
   // Lesson Data
   $http({
@@ -297,6 +301,11 @@ app.controller('GettingStartedController', ['$http', function($http, $scope){
     url: this.url + '/lessons'
   }).then(response => {
     this.lessons = response.data
+    for (let i = 0; i < this.lessons.length; i++) {
+      this.currentUrl = this.lessons[i].video_url
+    }
+    console.log($sce);
+    this.lessonUrl = $sce.trustAsResourceUrl(this.currentUrl);
   }).catch(reject => {
     console.log('Catch: ', reject);
   });
