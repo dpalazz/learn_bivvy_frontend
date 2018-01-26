@@ -1,6 +1,5 @@
 <div class="main-container">
   <div class="top-headline">
-    <img src="dan@3x.png" alt="dan_photo">
     <h1>Master Basecamp in 15 minutes.</h1>
     <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper vel libero dignissim varius. Nulla a accumsan velit. Praesent id tortor vel urna suscipit mollis id a eros.</h4>
   </div>
@@ -9,7 +8,8 @@
       <h2>{{lesson.title}}</h2>
       <h3 id="time">1 minute, 33 seconds</h3>
       <h3>{{lesson.description}}</h3>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/L7_jYl8A73g" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      {{ctrl.currentUrl}}
+      <iframe width="560" height="315" ng-src="{{ctrl.lessonUrl}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <hr>
     </div>
   </div>
