@@ -1,48 +1,76 @@
+.main-container {
+  background-color: white;
+  background: linear-gradient(to bottom, white 0%, white 30%, #eef6fc 30%, #eef6fc 90%, white 90%);
+  text-align: center;
+}
+
+#dan {
+  margin-top: 109px;
+  margin-bottom: 16px;
+}
+
+.top-headline {
+  text-align: center;
+}
+
 .top-headline h1 {
-  /*font-family: 'Aktiv Grotesk';*/
+  font-family: 'Raleway', sans-serif;
   font-size: 40px;
   letter-spacing: -0.3px;
-  text-align: center;
   color: #2d3338;
+  margin-top: 0;
 }
 
 .top-headline h4 {
-  /*font-family: 'Aktiv Grotesk';*/
-  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.39;
   letter-spacing: -0.1px;
-  text-align: center;
   color: #a3a7aa;
+  width: 71%;
+  margin: auto;
+  margin-bottom: 58px;
 }
 
 .inner-container {
   margin: auto;
-  max-width: 90%;
+  max-width: 84%;
   background-color: white;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   border: solid 0.5px #d1d3d5;
   text-align: center;
+  margin-bottom: 49px;
 }
 
 .inner-container h2 {
-  /*font-family: 'Aktiv Grotesk';*/
-  font-size: 18px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 26px;
   line-height: 0.85;
   letter-spacing: -0.2px;
   text-align: left;
   color: #0d89e2;
+  padding-left: 162px;
+  margin-bottom: 0px;
 }
 
 .inner-container h3 {
-  /*font-family: 'Aktiv Grotesk';*/
+  font-family: 'Raleway', sans-serif;
   font-size: 16px;
   line-height: 1.38;
   letter-spacing: -0.1px;
   text-align: left;
   color: #2d3338;
+  padding-left: 162px;
+  margin-top: 8px;
+  margin-bottom: 0px;
+}
+
+#description {
+  margin-top: 16px;
+  margin-bottom: 22px;
 }
 
 #time {
@@ -51,35 +79,73 @@
   color: #a3a7aa;
 }
 
-hr {
-  width: inherit;
-  border: solid 0.5px #ededee;
-  margin-top: 40px;
-}
-
-.contact-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.inner-container {
+  padding-top: 75px;
 }
 
 h2 {
-  /*font-family: 'Aktiv Grotesk';*/
+  font-family: 'Raleway', sans-serif;
   font-size: 30px;
   letter-spacing: -0.3px;
   color: #2d3338;
   text-align: center;
 }
 
-h4 {
-  font-family: 'Aktiv Grotesk';
-  font-size: 16px;
-  letter-spacing: -0.2px;
-  color: #007cdc;
+iframe {
+  width: 560px;
+  height: 315px;
+  max-width: 80%;
+  margin-bottom: 43px;
 }
 
+hr {
+  width: inherit;
+  border: solid 0.5px #ededee;
+  margin-bottom: 51px;
+  width: 80%;
+}
+
+#need-help {
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  color: #2d3338;
+  margin-bottom: 0px;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 23px;
+  margin-bottom: 121px;
+}
+
+.contact-container h4 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  letter-spacing: -0.5px;
+  color: #007cdc;
+  margin: 0;
+  text-decoration: underline;
+}
+
+.marker {
+	width: 168.8px;
+	height: 48.5px;
+	transform: rotate(10deg);
+	background-color: rgba(74, 165, 231, 0.16);
+}
+
+.shape {
+  width: 19.9px;
+	height: 19.9px;
+	border: solid 2px #007cdc;
+  margin-right: 11px;
+  margin-left: 29px;
+}
 
 /*Routes*/
 .routes {
-  /*display: none;*/
+  display: none;
 }
