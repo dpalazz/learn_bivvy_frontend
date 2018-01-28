@@ -63,7 +63,7 @@
       <h1>My Lessons</h1>
       <div class="card-container">
         <div ng-repeat="lesson in ctrl.lessons">
-          <button type="button" name="lesson">{{lesson.title}}</button>
+          <button type="button" ng-click="ctrl.viewLesson(lesson)" name="lesson">{{lesson.title}}</button>
         </div>
         <button type="button" name="add lesson" ng-click="ctrl.openAddLessonForm()">+</button>
         <form ng-if="ctrl.lessonForm" ng-submit="ctrl.addLesson()">
@@ -75,6 +75,20 @@
           </select>
           <input type="submit"/>
         </form>
+        <div ng-if="ctrl.viewedLesson">
+          <h1>{{ctrl.clickedLesson.title}}</h1>
+          <h4>{{ctrl.clickedLesson.description}}</h4>
+          <h4>{{ctrl.clickedLesson.video_url}}</h4>
+          <button type="button" name="edit" ng-click="ctrl.openForm()">Edit</button>
+          <form ng-if="ctrl.form" ng-submit="ctrl.editLesson(lesson)">
+            <input type="text" ng-model="ctrl.formDataLesson.title" placeholder="Title">
+            <input type="text" ng-model="ctrl.formDataLesson.description" placeholder="Description">
+            <input type="text" ng-model="ctrl.formDataLesson.video_url" placeholder="Video URL">
+            <input type="submit"/>
+          </form>
+          <button ng-click="ctrl.addTag()" type="button" name="button">Add Tag</button>
+          <button class="remove" type="button" name="delete" ng-click="ctrl.deleteLesson(lesson)">Remove</button>
+        </div>
       </div>
     </div>
   </div>

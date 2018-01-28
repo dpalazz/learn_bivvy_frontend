@@ -131,10 +131,15 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     });
   }
   this.viewLessons = (service) => {
-    this.viewingLesson = true
+    this.viewingLesson = !this.viewingLesson
     this.clickedService = service
     console.log(this.clickedService);
   };
+  this.viewLesson = (lesson) => {
+    this.viewedLesson = !this.viewedLesson
+    this.clickedLesson = lesson
+    console.log(this.clickedLesson);
+  }
 
   // User login
   this.login = (userPass) => {
