@@ -96,6 +96,8 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.formDataLesson = {};
   this.service = null;
   this.serviceTags = [];
+  this.viewingLesson = false;
+  this.clickedService = null;
   this.openForm = () => {
     this.form = true;
   }
@@ -128,6 +130,11 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       console.log('Catch: ', reject);
     });
   }
+  this.viewLessons = (service) => {
+    this.viewingLesson = true
+    this.clickedService = service
+    console.log(this.clickedService);
+  };
 
   // User login
   this.login = (userPass) => {
