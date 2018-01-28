@@ -91,13 +91,24 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.url = 'http://localhost:3000'
 
   // Global variables
+  this.pagesDisplay = true;
+  this.lessonsDisplay = false;
   this.form = false;
   this.formDataService = {};
   this.formDataLesson = {};
   this.service = null;
   this.serviceTags = [];
-  this.viewingLesson = false;
+  this.serviceInView = false;
   this.clickedService = null;
+  this.editModal = false;
+  this.showPages = () => {
+    this.pagesDisplay = true
+    this.lessonsDisplay = false;
+  }
+  this.showLessons = () => {
+    this.lessonsDisplay = true;
+    this.pagesDisplay = false;
+  }
   this.openForm = () => {
     this.form = true;
   }
@@ -129,17 +140,16 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     }).catch(reject => {
       console.log('Catch: ', reject);
     });
-  }
-  this.viewLessons = (service) => {
-    this.viewingLesson = !this.viewingLesson
+  };
+  this.viewServices = (service) => {
+    this.serviceInView = !this.serviceInView
+    this.pagesDisplay = false;
     this.clickedService = service
-    console.log(this.clickedService);
   };
   this.viewLesson = (lesson) => {
     this.viewedLesson = !this.viewedLesson
     this.clickedLesson = lesson
-    console.log(this.clickedLesson);
-  }
+  };
 
   // User login
   this.login = (userPass) => {
@@ -265,7 +275,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       data: this.formDataLesson
     }).then(response => {
       this.getAllLessons();
-      this.form = false;
+      this.formDataLesson = {};
     }).catch(reject => {
       console.log('Catch', reject)
     });

@@ -4,6 +4,29 @@
   text-align: center;
 }
 
+nav {
+  background-color: #0d89e2;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+}
+
+nav div {
+  padding-top: 20px;
+}
+
+nav h4 {
+  display: inline;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
 #dan {
   margin-top: 109px;
   margin-bottom: 16px;
@@ -21,6 +44,11 @@
   letter-spacing: -0.3px;
   color: #2d3338;
   margin-top: 0;
+}
+
+h1 {
+  font-family: 'Raleway', sans-serif;
+  margin-left: 50px;
 }
 
 .top-headline h4 {
@@ -56,22 +84,13 @@
   margin-bottom: 49px;
 }
 
-.selected {
-  border: 1px solid blue;
-}
-
-.with-blue {
-  border-top: 4px solid #0d89e2;
-  text-align: left;
-  padding: 20px 50px;
-  padding-bottom: 71px;
-}
-
 .card-container {
+  font-family: 'Raleway', sans-serif;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   cursor: pointer;
+  margin-left: 50px;
 }
 
 .one-card {
@@ -79,9 +98,14 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   width: 200px;
   height: 200px;
-  margin: 10px;
-  padding-left: 10px;
-  margin-left: 0px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+}
+
+.one-card h3 {
+  text-align: center;
+  padding-top: 50px;
 }
 
 button {
@@ -204,6 +228,65 @@ hr {
 	border: solid 2px #007cdc;
   margin-right: 11px;
   margin-left: 29px;
+}
+
+.dim {
+  background-color: rgba(0, 0, 0, .4);
+  position: absolute;
+  left: 0px;
+  top: 500px;
+  width: 100%;
+  height: 100%;
+  z-index: 5000;
+  display: none;
+}
+
+.modal {
+  background-color: white;
+  box-shadow: 0px 2px 5px grey;
+  margin: 10px auto;
+  color: #33332e;
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  border-radius: 3px;
+  width: 200px;
+  height: 425px;
+}
+
+.modal h4 {
+  text-align: right;
+  margin-bottom: 0px;
+  padding-top: 15px;
+  padding-right: 0px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.modal h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: left;
+  padding-left: 0;
+}
+
+.row > input:focus {
+  outline: none;
+}
+
+.editModal {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.editModal form input[type=submit] {
+  border-radius: 1px;
+  padding: 5px 15px;
 }
 
 /*Routes*/
