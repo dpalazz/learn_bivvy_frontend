@@ -218,6 +218,19 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     });
   };
 
+  // Create lessonplan
+  this.addTag = () => {
+    console.log('clicked');
+    // $http({
+    //   method: 'POST',
+    //   url: this.url + '/lessonplans',
+    //   data: {service_id: newServiceId, lesson_id: this.currentLesson.id}
+    // }).then(response => {
+    //   this.getAllLessons();
+    // }).catch(reject => {
+    //   console.log('Catch', reject);
+    // });
+  }
   // Create Service
   this.addService = () => {
     $http({

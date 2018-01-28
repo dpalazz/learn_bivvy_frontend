@@ -45,6 +45,7 @@
 }
 
 .inner-container {
+  font-family: 'Raleway', sans-serif;
   margin: auto;
   max-width: 84vw;
   padding-top: 75px;
@@ -53,6 +54,46 @@
   border: solid 0.5px #d1d3d5;
   text-align: center;
   margin-bottom: 49px;
+}
+
+.with-blue {
+  border-top: 4px solid #0d89e2;
+  text-align: left;
+  padding: 20px 50px;
+  padding-bottom: 71px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.one-card {
+  border: 1px solid #d1d3d5;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+}
+
+button {
+  font-size: 14px;
+  height: 38px;
+  background-color: #79c212;
+  border: none;
+  border-radius: 3px;
+  padding: 0 20px;
+  color: white;
+}
+
+.remove {
+  font-size: 14px;
+  height: 38px;
+  background-color: #e24f58;
+  border: none;
+  border-radius: 3px;
+  padding: 0 20px;
+  color: white;
 }
 
 .children-inner-container {
