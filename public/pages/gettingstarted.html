@@ -4,15 +4,20 @@
     <h1>Master Bivvy in 15 minutes.</h1>
     <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper vel libero dignissim varius. Nulla a accumsan velit. Praesent id tortor vel urna suscipit mollis id a eros.</h4>
   </div>
-  <div class="inner-container">
-    <div ng-repeat="lesson in ctrl.lessons">
-      <h2>{{lesson.title}}</h2>
-      <h3 id="time">1 minute, 33 seconds</h3>
-      <h3 id="description">{{lesson.description}}</h3>
-      <iframe ng-src="{{ctrl.lessonUrl}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      <hr>
+  <div class="background-blue">
+    <div class="inner-container">
+      <div class="children-inner-container">
+        <div ng-repeat="lesson in ctrl.lessons">
+          <h2>{{lesson.title}}</h2>
+          <h3 id="time">1 minute, 33 seconds</h3>
+          <h3 id="description">{{lesson.description}}</h3>
+          <iframe ng-src="{{ctrl.lessonUrl}}" frameborder="0" align="center" allowfullscreen></iframe>
+          <hr>
+        </div>
+      </div>
     </div>
   </div>
+
   <h2 id="need-help">Need more help? <span class="marker">Call or email us</span> at any time.</h2>
   <div class="contact-container">
     <div class="shape"></div>
