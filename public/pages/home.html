@@ -22,28 +22,18 @@
   </div>
   <div class="background-blue">
     <div class="inner-container with-blue">
-      <h1>My Services</h1>
+      <h1>My Pages</h1>
       <div class="card-container">
         <div ng-repeat="service in ctrl.services">
           <button type="button" name="service" ng-click="ctrl.viewLessons(service)">{{service.name}}</button>
         </div>
-        <button type="button" name="add service" ng-click="ctrl.openAddServiceForm()">Add New Service</button>
+        <button type="button" name="add service" ng-click="ctrl.openAddServiceForm()">+</button>
         <form ng-if="ctrl.serviceForm" ng-submit="ctrl.addService()">
           <input type="text" ng-model="ctrl.formDataService.name" placeholder="Name">
           <input type="submit"/>
         </form>
         <div ng-if="ctrl.viewingLesson">
           <h1>{{ctrl.clickedService.name}} Lessons</h1>
-            <button type="button" name="add lesson" ng-click="ctrl.openAddLessonForm()">Add New Lesson</button>
-            <form ng-if="ctrl.lessonForm" ng-submit="ctrl.addLesson()">
-              <input type="text" ng-model="ctrl.formDataLesson.title" placeholder="Title">
-              <input type="text" ng-model="ctrl.formDataLesson.description" placeholder="Description">
-              <input type="text" ng-model="ctrl.formDataLesson.video_url" placeholder="Video URL">
-              <select ng-model="ctrl.formDataLesson.services">
-                <option ng-repeat="service in ctrl.services" value="{{service.name}}">{{service.name}}</option>
-              </select>
-              <input type="submit"/>
-            </form>
           <div ng-repeat="lesson in ctrl.clickedService.lessons">
             <h3>{{lesson.title}}</h3>
             <h4>{{lesson.description}}</h4>
@@ -67,6 +57,24 @@
           </form>
           <button class="remove" type="button" name="delete" ng-click="ctrl.deleteService(service)">Remove</button>
         </div> -->
+      </div>
+    </div>
+    <div class="inner-container with-blue">
+      <h1>My Lessons</h1>
+      <div class="card-container">
+        <div ng-repeat="lesson in ctrl.lessons">
+          <button type="button" name="lesson">{{lesson.title}}</button>
+        </div>
+        <button type="button" name="add lesson" ng-click="ctrl.openAddLessonForm()">+</button>
+        <form ng-if="ctrl.lessonForm" ng-submit="ctrl.addLesson()">
+          <input type="text" ng-model="ctrl.formDataLesson.title" placeholder="Title">
+          <input type="text" ng-model="ctrl.formDataLesson.description" placeholder="Description">
+          <input type="text" ng-model="ctrl.formDataLesson.video_url" placeholder="Video URL">
+          <select ng-model="ctrl.formDataLesson.services">
+            <option ng-repeat="service in ctrl.services" value="{{service.name}}">{{service.name}}</option>
+          </select>
+          <input type="submit"/>
+        </form>
       </div>
     </div>
   </div>
