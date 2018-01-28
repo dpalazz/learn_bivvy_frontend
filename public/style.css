@@ -1,12 +1,37 @@
 .main-container {
   background-color: white;
-  background: linear-gradient(to bottom, white 0%, white 30%, #eef6fc 30%, #eef6fc 90%, white 90%);
+  /*background: linear-gradient(to bottom, white 0%, white 25%, #eef6fc 25%, #eef6fc 90%, white 90%);*/
   text-align: center;
+}
+
+nav {
+  background-color: #0d89e2;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+}
+
+nav div {
+  padding-top: 20px;
+}
+
+nav h4 {
+  display: inline;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: pointer;
 }
 
 #dan {
   margin-top: 109px;
   margin-bottom: 16px;
+  width: 140px;
+  height: 161px;
 }
 
 .top-headline {
@@ -19,6 +44,11 @@
   letter-spacing: -0.3px;
   color: #2d3338;
   margin-top: 0;
+}
+
+h1 {
+  font-family: 'Raleway', sans-serif;
+  margin-left: 50px;
 }
 
 .top-headline h4 {
@@ -35,9 +65,18 @@
   margin-bottom: 58px;
 }
 
+.background-blue {
+  background-color: #eef6fc;
+  width: 100%;
+  height: 80%;
+  position: relative;
+}
+
 .inner-container {
+  font-family: 'Raleway', sans-serif;
   margin: auto;
-  max-width: 84%;
+  max-width: 84vw;
+  padding-top: 75px;
   background-color: white;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   border: solid 0.5px #d1d3d5;
@@ -45,27 +84,82 @@
   margin-bottom: 49px;
 }
 
-.inner-container h2 {
+.card-container {
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  cursor: pointer;
+  margin-left: 50px;
+}
+
+.one-card {
+  border: 1px solid #d1d3d5;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+}
+
+.one-card h3 {
+  text-align: center;
+  padding-top: 50px;
+}
+
+button {
+  font-size: 14px;
+  height: 38px;
+  background-color: #79c212;
+  border: none;
+  border-radius: 3px;
+  padding: 0 20px;
+  color: white;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.remove {
+  font-size: 14px;
+  height: 38px;
+  background-color: #e24f58;
+  border: none;
+  border-radius: 3px;
+  padding: 0 20px;
+  color: white;
+}
+
+.children-inner-container {
+  display: inline-block;
+  text-align: left;
+  max-width: 80%;
+}
+
+.children-inner-container h2 {
   font-family: 'Raleway', sans-serif;
   font-size: 26px;
   line-height: 0.85;
   letter-spacing: -0.2px;
-  text-align: left;
   color: #0d89e2;
-  padding-left: 162px;
   margin-bottom: 0px;
 }
 
-.inner-container h3 {
+.children-inner-container h3 {
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
   line-height: 1.38;
   letter-spacing: -0.1px;
-  text-align: left;
   color: #2d3338;
-  padding-left: 162px;
   margin-top: 8px;
   margin-bottom: 0px;
+  max-width: 850px;
+}
+
+#time {
+  letter-spacing: -0.2px;
+  /*text-align: left;*/
+  color: #a3a7aa;
 }
 
 #description {
@@ -73,34 +167,25 @@
   margin-bottom: 22px;
 }
 
-#time {
-  letter-spacing: -0.2px;
-  text-align: left;
-  color: #a3a7aa;
-}
-
-.inner-container {
-  padding-top: 75px;
-}
-
 h2 {
   font-family: 'Raleway', sans-serif;
   font-size: 30px;
   letter-spacing: -0.3px;
   color: #2d3338;
-  text-align: center;
 }
 
 iframe {
-  width: 560px;
-  height: 315px;
+  width: 800px;
+  height: 449px;
   max-width: 80%;
   margin-bottom: 43px;
+  /*padding-left: 162px;*/
+  /*padding-right: 20px;*/
 }
 
 hr {
   width: inherit;
-  border: solid 0.5px #ededee;
+  /*border: solid 0.5px #ededee;*/
   margin-bottom: 51px;
   width: 80%;
 }
@@ -143,6 +228,65 @@ hr {
 	border: solid 2px #007cdc;
   margin-right: 11px;
   margin-left: 29px;
+}
+
+.dim {
+  background-color: rgba(0, 0, 0, .4);
+  position: absolute;
+  left: 0px;
+  top: 500px;
+  width: 100%;
+  height: 100%;
+  z-index: 5000;
+  display: none;
+}
+
+.modal {
+  background-color: white;
+  box-shadow: 0px 2px 5px grey;
+  margin: 10px auto;
+  color: #33332e;
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  border-radius: 3px;
+  width: 200px;
+  height: 425px;
+}
+
+.modal h4 {
+  text-align: right;
+  margin-bottom: 0px;
+  padding-top: 15px;
+  padding-right: 0px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.modal h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: left;
+  padding-left: 0;
+}
+
+.row > input:focus {
+  outline: none;
+}
+
+.editModal {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.editModal form input[type=submit] {
+  border-radius: 1px;
+  padding: 5px 15px;
 }
 
 /*Routes*/

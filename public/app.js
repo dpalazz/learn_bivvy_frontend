@@ -91,11 +91,24 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.url = 'http://localhost:3000'
 
   // Global variables
+  this.pagesDisplay = true;
+  this.lessonsDisplay = false;
   this.form = false;
   this.formDataService = {};
   this.formDataLesson = {};
   this.service = null;
   this.serviceTags = [];
+  this.serviceInView = false;
+  this.clickedService = null;
+  this.editModal = false;
+  this.showPages = () => {
+    this.pagesDisplay = true
+    this.lessonsDisplay = false;
+  }
+  this.showLessons = () => {
+    this.lessonsDisplay = true;
+    this.pagesDisplay = false;
+  }
   this.openForm = () => {
     this.form = true;
   }
@@ -127,7 +140,16 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     }).catch(reject => {
       console.log('Catch: ', reject);
     });
-  }
+  };
+  this.viewServices = (service) => {
+    this.serviceInView = !this.serviceInView
+    this.pagesDisplay = false;
+    this.clickedService = service
+  };
+  this.viewLesson = (lesson) => {
+    this.viewedLesson = !this.viewedLesson
+    this.clickedLesson = lesson
+  };
 
   // User login
   this.login = (userPass) => {
@@ -218,6 +240,19 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     });
   };
 
+  // Create lessonplan
+  this.addTag = () => {
+    console.log('clicked');
+    // $http({
+    //   method: 'POST',
+    //   url: this.url + '/lessonplans',
+    //   data: {service_id: newServiceId, lesson_id: this.currentLesson.id}
+    // }).then(response => {
+    //   this.getAllLessons();
+    // }).catch(reject => {
+    //   console.log('Catch', reject);
+    // });
+  }
   // Create Service
   this.addService = () => {
     $http({
@@ -240,7 +275,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       data: this.formDataLesson
     }).then(response => {
       this.getAllLessons();
-      this.form = false;
+      this.formDataLesson = {};
     }).catch(reject => {
       console.log('Catch', reject)
     });
