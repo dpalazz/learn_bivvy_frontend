@@ -104,10 +104,12 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.showPages = () => {
     this.pagesDisplay = true
     this.lessonsDisplay = false;
+    this.serviceInView = false;
   }
   this.showLessons = () => {
     this.lessonsDisplay = true;
     this.pagesDisplay = false;
+    this.serviceInView = false;
   }
   this.openForm = () => {
     this.form = true;
@@ -241,7 +243,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   };
 
   // Create lessonplan
-  this.addTag = () => {
+  this.addLessonToService = () => {
     console.log('clicked');
     // $http({
     //   method: 'POST',
