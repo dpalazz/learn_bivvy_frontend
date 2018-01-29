@@ -1,10 +1,10 @@
 <!-- If user is not logged in -->
 <div ng-if="!ctrl.user">
-  <div class="top-headline">
-    <h1>Log in to Learn Bivvy App</h1>
+  <div class="login-screen">
+    <h1>Learn Bivvy</h1>
     <form ng-submit="ctrl.login(userPass)">
-      <input type="text" ng-model="userPass.username" placeholder="username"><br/>
-      <input type="password" ng-model="userPass.password" placeholder="password"><br/>
+      <input type="text" ng-model="userPass.username" placeholder="Username"><br/>
+      <input type="password" ng-model="userPass.password" placeholder="Password"><br/>
       <input type="submit">
     </form>
     <div>{{ctrl.error}}</div>
