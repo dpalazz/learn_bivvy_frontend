@@ -91,6 +91,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.url = 'http://localhost:3000'
 
   // Global variables
+  this.message = null;
   this.pagesDisplay = true;
   this.lessonsDisplay = false;
   this.form = false;
@@ -100,6 +101,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.serviceTags = [];
   this.serviceInView = false;
   this.clickedService = null;
+  this.showListOfLessons = false;
   this.editModal = false;
   this.showPages = () => {
     this.pagesDisplay = true
@@ -110,6 +112,9 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     this.lessonsDisplay = true;
     this.pagesDisplay = false;
     this.serviceInView = false;
+  }
+  this.addLessonDisplayList = () => {
+    this.showListOfLessons = !this.showListOfLessons
   }
   this.openForm = () => {
     this.form = true;
@@ -226,6 +231,9 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       this.lessons.push(response.data.lesson);
       this.currentLesson = this.lessons[this.lessons.length - 1];
       this.lessonForm = false;
+    }).catch(reject => {
+      console.log('Catch', reject);
+    });
 
       // then lessonplan posts
       $http({
@@ -237,24 +245,22 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       }).catch(reject => {
         console.log('Catch', reject);
       });
+    };
+
+  // Create lessonplan
+  this.addLessonToService = (service, lessonID) => {
+    $http({
+      method: 'POST',
+      url: this.url + '/lessonplans',
+      data: {service_id: service.id, lesson_id: lessonID}
+    }).then(response => {
+      this.getAllLessons();
+      this.showListOfLessons = false;
     }).catch(reject => {
       console.log('Catch', reject);
     });
-  };
-
-  // Create lessonplan
-  this.addLessonToService = () => {
-    console.log('clicked');
-    // $http({
-    //   method: 'POST',
-    //   url: this.url + '/lessonplans',
-    //   data: {service_id: newServiceId, lesson_id: this.currentLesson.id}
-    // }).then(response => {
-    //   this.getAllLessons();
-    // }).catch(reject => {
-    //   console.log('Catch', reject);
-    // });
   }
+
   // Create Service
   this.addService = () => {
     $http({
@@ -297,8 +303,39 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     });
   };
 
+  // Remove Lesson from Service
+  this.removeLesson = (service, lesson) => {
+    $http({
+      method: 'GET',
+      url: this.url + '/lessonplans'
+    }).then(response => {
+      this.allLessonplans = response.data;
+      for (let i = 0; i < this.allLessonplans.length; i++) {
+        if (this.allLessonplans[i].service_id == service.id && this.allLessonplans[i].lesson_id == lesson.id) {
+          this.lessonplanId = this.allLessonplans[i]
+        }
+      }
+      console.log(this.lessonplanId.id);
+      $http({
+        method: 'DELETE',
+        url: this.url + '/lessonplans/' + this.lessonplanId.id,
+        data: {service_id: service.id, lesson_id: lesson.id}
+      }).then(response => {
+        this.getAllLessons();
+      }).catch(reject => {
+        console.log('Catch', reject);
+      });
+
+    }).catch(reject => {
+      console.log('Catch', reject);
+    });
+
+
+  }
+
   // Delete Lesson
   this.deleteLesson = (lesson) => {
+    console.log(lesson);
     $http({
       method: 'DELETE',
       url: this.url + '/lessons/' + lesson.id

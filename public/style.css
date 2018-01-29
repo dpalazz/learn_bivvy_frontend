@@ -152,9 +152,10 @@ nav h4 {
   margin: 10px 0;
 }
 
-svg {
-  padding-top: 30px;
+.table-of-lessons img {
+  padding-top: 10px;
   padding-left: 7px;
+  cursor: pointer;
 }
 
 .add-lesson {
@@ -181,19 +182,20 @@ svg {
 }
 
 .button {
-  font-size: 14px;
   color: white;
   width: 150px;
-  height: 50px;
+  height: 45px;
   background-color: #79c212;
   border: none;
   border-radius: 3px;
-  margin-right: 300px;
+  margin-right: 150px;
   margin-top: 20px;
+  text-align: center;
+  padding-top: 15px;
 }
 
 .button h4 {
-  padding: 0px 28px;
+  display: inline;
 }
 
 .remove {
