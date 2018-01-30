@@ -65,7 +65,7 @@ app.config(['$routeProvider', function($routeProvider){
 app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce){
   // API
   // this.url = 'http://localhost:3000'
-  this.url = 'https://learn-bivvy-api.herokuapp.com/'
+  this.url = 'https://learn-bivvy-api.herokuapp.com'
 
 
   // Global variables
@@ -362,7 +362,7 @@ app.controller('PotableWaterController', ['$http', '$sce', function($http, $sce)
 
   // API
   // this.url = 'http://localhost:3000'
-  this.url = 'https://learn-bivvy-api.herokuapp.com/'
+  this.url = 'https://learn-bivvy-api.herokuapp.com'
 
   // Global variables
   this.lessonUrl = null;
