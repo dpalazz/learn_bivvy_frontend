@@ -1,14 +1,28 @@
 <!-- If user is not logged in -->
 <div ng-if="!ctrl.user">
-  <div class="login-screen">
+  <div ng-show="ctrl.signInScreen" class="login-screen">
     <h1>Learn Bivvy</h1>
     <form ng-submit="ctrl.login(userPass)">
       <input type="text" ng-model="userPass.username" placeholder="Username"><br/>
       <input type="password" ng-model="userPass.password" placeholder="Password"><br/>
-      <input type="submit">
+      <input type="submit" value="Sign in">
     </form>
-    <div>{{ctrl.error}}</div>
+    <div class="login-register">
+      <h4 ng-click="ctrl.register()">Register</h4>
+    </div>
   </div>
+  <div ng-show="ctrl.registerScreen" class="login-screen">
+    <h1>Register</h1>
+    <form ng-submit="ctrl.registerUser(userPass)">
+      <input type="text" ng-model="userPass.username" placeholder="Username"><br/>
+      <input type="password" ng-model="userPass.password" placeholder="Password"><br/>
+      <input ng-click="ctrl.signInScreen = true; ctrl.registerScreen = false" type="submit" value="Register">
+    </form>
+    <div class="login-register">
+      <h4 ng-click="ctrl.signInScreen = true; ctrl.registerScreen = false">Log in</h4>
+    </div>
+  <div>{{ctrl.error}}</div>
+</div>
 </div>
 
 <!-- If user is logged in -->
@@ -42,8 +56,7 @@
         <img src="assets/x.svg" ng-click="ctrl.removeLesson(ctrl.clickedService, lesson)">
       </div>
       <div class="add-lesson" ng-click="ctrl.addLessonDisplayList()">Add Lesson</div>
-      <div ng-if="ctrl.showListOfLessons" ng-repeat="lesson in ctrl.lessons">
-        <h1>{{ctrl.message}}</h1>
+      <div class="lesson-add" ng-if="ctrl.showListOfLessons" ng-repeat="lesson in ctrl.lessons">
         <h1>{{lesson.title}}</h1>
         <h1 ng-click="ctrl.addLessonToService(ctrl.clickedService, lesson.id)">+</h1>
       </div>
@@ -111,10 +124,13 @@
               <input type="text" ng-model="ctrl.formDataLesson.description" placeholder="{{ctrl.thisLesson.description}}"><br/>
               <label for="video_url">Video URL</label><br/>
               <input type="text" ng-model="ctrl.formDataLesson.video_url" placeholder="{{ctrl.thisLesson.video_url}}"><br/>
-              <div class="checkbox" ng-repeat="service in ctrl.services">
-                <input type="checkbox" ng-model="ctrl.formDataLesson.services" ng-true-value="{{service}}" value="">
-                <label for="{{service.name}}">{{service.name}}</label>
+              <!-- Create lessonplan associations -->
+              <div class="checkbox">
+                <div ng-repeat="service in ctrl.services">
+                  <div class="checkbox-service-name">{{service.name}}</div>
+                </div>
               </div>
+              <!-- End create lessonplan assoc. -->
               <input ng-click="ctrl.editModal = false" type="submit"/>
             </div>
           </form>

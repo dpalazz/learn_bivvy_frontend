@@ -64,12 +64,16 @@ app.config(['$routeProvider', function($routeProvider){
 // ********************Main********************
 app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce){
   // API
-  this.url = 'https://learn-bivvy-api.herokuapp.com'
+  this.url = 'http://localhost:3000'
+  // this.url = 'https://learn-bivvy-api.herokuapp.com/'
+
 
   // Global variables
   this.message = null;
   this.pagesDisplay = true;
   this.lessonsDisplay = false;
+  this.signInScreen = true;
+  this.registerScreen = false;
   this.form = false;
   this.formDataService = {};
   this.formDataLesson = {};
@@ -81,6 +85,10 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.editModal = false;
   this.createModal = false;
   this.viewModal = false;
+  this.register = () => {
+    this.signInScreen = false;
+    this.registerScreen = true;
+  }
   this.showPages = () => {
     this.pagesDisplay = true
     this.lessonsDisplay = false;
@@ -117,7 +125,6 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
           this.clickedService = this.services[i]
         }
       }
-      console.log('hi');
     }).catch(reject => {
       console.log('Catch: ', reject);
     });
@@ -151,6 +158,17 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     }).then(response => {
       this.user = response.data.user;
       localStorage.setItem('token', JSON.stringify(response.data.token));
+    }).catch(reject => {console.log('Rejected:', reject)
+    });
+  };
+
+  // User register
+  this.registerUser = (userPass) => {
+    $http({
+      method: 'POST',
+      url: this.url + '/users',
+      data: {user: {username: userPass.username, password: userPass.password}}
+    }).then(response => {
     }).catch(reject => {console.log('Rejected:', reject)
     });
   };
@@ -208,6 +226,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       data: this.formDataLesson
     }).then(response => {
       this.getAllLessons();
+      this.getAllServices();
       this.lessons.push(response.data.lesson);
       this.currentLesson = this.lessons[this.lessons.length - 1];
       this.lessonForm = false;
@@ -219,6 +238,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
         data: {service_id: newServiceId, lesson_id: this.currentLesson.id}
       }).then(response => {
         this.getAllLessons();
+        this.getAllServices();
       }).catch(reject => {
         console.log('Catch', reject);
       });
@@ -341,7 +361,8 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
 app.controller('PotableWaterController', ['$http', '$sce', function($http, $sce){
 
   // API
-   this.url = 'https://learn-bivvy-api.herokuapp.com'
+  this.url = 'http://localhost:3000'
+  // this.url = 'https://learn-bivvy-api.herokuapp.com/'
 
   // Global variables
   this.lessonUrl = null;

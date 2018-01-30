@@ -16,6 +16,15 @@ html, body {
   margin-top: 300px;
 }
 
+.login-register h4 {
+  text-align: left;
+}
+
+.login-register h4:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .login-screen form input {
   width: 330px;
 	height: 45px;
@@ -195,6 +204,7 @@ nav h4 {
 .table-of-lessons img {
   padding-top: 10px;
   padding-left: 10px;
+  padding-right: 15px;
   cursor: pointer;
 }
 
@@ -219,6 +229,15 @@ nav h4 {
 
 .lesson-box h1 {
   display: inline;
+}
+
+.lesson-add {
+  padding-top: 20px;
+}
+
+.lesson-add h1 {
+  display: inline;
+  padding-right: 20px;
 }
 
 button {
@@ -347,7 +366,7 @@ hr {
   background-color: rgba(0, 0, 0, .4);
   position: absolute;
   left: 0px;
-  top: 75px;
+  top: 10px;
   width: 100%;
   height: 100%;
   z-index: 5000;
@@ -444,8 +463,14 @@ hr {
   text-align: center;
 }
 
-.editModal form input, .createModal form input {
+.createModal form input {
   width: 600px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.editModal form input {
+  width: 780px;
   height: 50px;
   margin-bottom: 20px;
 }
@@ -463,17 +488,35 @@ hr {
   font-size: 16px;
   margin-top: 20px;
   border: none;
+  cursor: pointer;
 }
 
 .checkbox {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
-.editModal form input[type=checkbox] {
-  width: 10px;
-  height: 10px;
+.checkbox .checkbox-service-name {
+  width: 180px;
+  height: 30px;
+  border: 1px solid #a3a7aa;
+  border-radius: 2px;
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.checkbox-service-name {
+  vertical-align: middle;
+  color: #a3a7aa;
+}
+.checkbox .checkbox-service-name:hover {
+  cursor: pointer;
+  border: 1px solid #79c212;
+  color: #79c212;
 }
 
 /*Routes*/
