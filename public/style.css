@@ -221,6 +221,15 @@ nav h4 {
   display: inline;
 }
 
+.lesson-add {
+  padding-top: 20px;
+}
+
+.lesson-add h1 {
+  display: inline;
+  padding-right: 20px;
+}
+
 button {
   color: white;
   background-color: #79c212;
