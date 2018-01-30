@@ -1,6 +1,46 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.login-screen {
+  margin: auto;
+  width: 300px;
+  font-family: 'Raleway', sans-serif;
+  color: #2b4559;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.login-screen h1 {
+  margin-top: 300px;
+}
+
+.login-screen form input {
+  width: 330px;
+	height: 45px;
+	border-radius: 3px;
+	background-color: #ffffff;
+  border: 1px solid #a3a7aa;
+  color: #a3a7aa;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.login-screen form input[type=submit] {
+  width: 340px;
+	height: 45px;
+	border-radius: 3px;
+	background-color: #1d8bdf;
+  color: white;
+  font-size: 16px;
+  margin-top: 30px;
+  border: none;
+}
+
 .main-container {
   background-color: white;
-  /*background: linear-gradient(to bottom, white 0%, white 25%, #eef6fc 25%, #eef6fc 90%, white 90%);*/
+  /*background: linear-gradient(to bottom, white 0%, white 25%, #eef6fc 2%, #eef6fc 90%, white 90%);*/
   text-align: center;
 }
 
@@ -93,8 +133,7 @@ nav h4 {
 .background-blue {
   background-color: #eef6fc;
   width: 100%;
-  height: 80%;
-  position: relative;
+  padding: 1px;
 }
 
 .inner-container {
@@ -106,7 +145,8 @@ nav h4 {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   border: solid 0.5px #d1d3d5;
   text-align: center;
-  margin-bottom: 49px;
+  margin-top: -55px;
+  margin-bottom: -55px;
 }
 
 .card-container {
@@ -139,7 +179,7 @@ nav h4 {
 }
 
 .lesson-table {
-  width: 650px;
+  width: 850px;
   border: 1px solid #d1d3d5;
   border-radius: 3px;
   padding-top: 10px;
@@ -154,7 +194,7 @@ nav h4 {
 
 .table-of-lessons img {
   padding-top: 10px;
-  padding-left: 7px;
+  padding-left: 10px;
   cursor: pointer;
 }
 
@@ -181,17 +221,17 @@ nav h4 {
   display: inline;
 }
 
-.button {
+button {
   color: white;
-  width: 150px;
-  height: 45px;
   background-color: #79c212;
   border: none;
   border-radius: 3px;
-  margin-right: 150px;
-  margin-top: 20px;
   text-align: center;
-  padding-top: 15px;
+  width: 170px;
+  height: 40px;
+  font-size: 16px;
+  margin-right: 300px;
+  margin-top: 15px;
 }
 
 .button h4 {
@@ -273,6 +313,7 @@ hr {
   font-size: 24px;
   letter-spacing: -0.5px;
   color: #2d3338;
+  margin-top: 90px;
   margin-bottom: 0px;
 }
 
@@ -312,7 +353,7 @@ hr {
   background-color: rgba(0, 0, 0, .4);
   position: absolute;
   left: 0px;
-  top: 500px;
+  top: 75px;
   width: 100%;
   height: 100%;
   z-index: 5000;
@@ -329,8 +370,8 @@ hr {
   padding-right: 30px;
   padding-bottom: 20px;
   border-radius: 3px;
-  width: 200px;
-  height: 425px;
+  width: 800px;
+  height: 625px;
 }
 
 .modal h4 {
@@ -362,9 +403,38 @@ hr {
   margin-top: 10px;
 }
 
-.editModal form input[type=submit] {
+.createModal {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.editModal h2, .createModal h2 {
+  text-align: center;
+}
+
+.editModal form input, .createModal form input {
+  width: 600px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.editModal form input[type=text], .createModal form input[type=text] {
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.editModal form input[type=submit], .createModal form input[type=submit] {
   border-radius: 1px;
   padding: 5px 15px;
+  background: #79c212;
+  color: white;
+  font-size: 16px;
+  margin-top: 20px;
+  border: none;
 }
 
 /*Routes*/
