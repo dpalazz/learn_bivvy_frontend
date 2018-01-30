@@ -65,6 +65,7 @@ app.config(['$routeProvider', function($routeProvider){
 app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce){
   // API
   this.url = 'http://localhost:3000'
+  // 'https://learn-bivvy-api.herokuapp.com/'
 
   // Global variables
   this.message = null;
@@ -80,6 +81,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.showListOfLessons = false;
   this.editModal = false;
   this.createModal = false;
+  this.viewModal = false;
   this.showPages = () => {
     this.pagesDisplay = true
     this.lessonsDisplay = false;
@@ -256,6 +258,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
 
   // Edit Lesson
   this.editLesson = (lesson) => {
+    console.log(this.formDataLesson);
     $http({
       method: 'PUT',
       url: this.url + '/lessons/' + lesson.id,
@@ -340,6 +343,7 @@ app.controller('PotableWaterController', ['$http', '$sce', function($http, $sce)
 
   // API
   this.url = 'http://localhost:3000'
+  //  'https://learn-bivvy-api.herokuapp.com/'
 
   // Global variables
   this.lessonUrl = null;
@@ -350,11 +354,10 @@ app.controller('PotableWaterController', ['$http', '$sce', function($http, $sce)
     method: 'GET',
     url: this.url + '/services/9'
   }).then(response => {
-    this.services = response.data.lessons;
-
-    for (let i = 0; i < this.services.length; i++) {
-      console.log(this.services[i].video_url);
-    this.currentUrl.push($sce.trustAsResourceUrl(this.services[i].video_url))
+    this.serviceLessons = response.data.lessons;
+    for (let i = 0; i < this.serviceLessons.length; i++) {
+      console.log(this.serviceLessons[i].video_url);
+    this.currentUrl.push($sce.trustAsResourceUrl(this.serviceLessons[i].video_url))
     }
     // ***********
 

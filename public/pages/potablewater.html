@@ -7,12 +7,14 @@
   <div class="background-blue">
     <div class="inner-container">
       <div class="children-inner-container">
-        <div ng-repeat="lesson in ctrl.services">
+        <div ng-repeat="lesson in ctrl.serviceLessons">
           <h1>{{lesson.title}}</h1>
           <h3 id="time">1 minute, 33 seconds</h3>
           <h3 id="description">{{lesson.description}}</h3>
           <div ng-repeat="url in ctrl.currentUrl">
-            <iframe ng-src="{{url}}" frameborder="0" align="center" allowfullscreen></iframe>
+            <div ng-if="lesson.video_url == url">
+                <iframe ng-src="{{url}}" frameborder="0" align="center" allowfullscreen></iframe>
+            </div>
           </div>
           <hr>
         </div>
@@ -21,9 +23,9 @@
   </div>
   <h2 id="need-help">Need more help? <span class="marker">Call or email us</span> at any time.</h2>
   <div class="contact-container">
-    <div class="shape"></div>
+    <img src="./assets/phone-call.svg" alt="">
     <h4>+1 (812) 322-7392</h4>
-    <div class="shape"></div>
+    <img src="./assets/mail.svg" alt="">
     <h4>support@mybivvy.com</h4>
   </div>
 </div>

@@ -107,7 +107,7 @@ nav h4 {
   color: #a3a7aa;
   width: 71%;
   margin: auto;
-  margin-bottom: 58px;
+  margin-bottom: 108px;
 }
 
 .container h4 span:hover {
@@ -199,7 +199,7 @@ nav h4 {
 }
 
 .add-lesson {
-  max-width: 650px;
+  max-width: 850px;
   background-color: #79c212;
   border-radius: 3px;
   padding-top: 10px;
@@ -329,6 +329,8 @@ hr {
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
   letter-spacing: -0.5px;
+  padding-left: 10px;
+  padding-right: 15px;
   color: #007cdc;
   margin: 0;
   text-decoration: underline;
@@ -339,14 +341,6 @@ hr {
 	height: 48.5px;
 	transform: rotate(10deg);
 	background-color: rgba(74, 165, 231, 0.16);
-}
-
-.shape {
-  width: 19.9px;
-	height: 19.9px;
-	border: solid 2px #007cdc;
-  margin-right: 11px;
-  margin-left: 29px;
 }
 
 .dim {
@@ -374,6 +368,20 @@ hr {
   height: 625px;
 }
 
+.view-modal {
+  background-color: white;
+  box-shadow: 0px 2px 5px grey;
+  margin: 10px auto;
+  color: #33332e;
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  border-radius: 3px;
+  width: 800px;
+  height: 625px;
+}
+
 .modal h4 {
   text-align: right;
   margin-bottom: 0px;
@@ -381,6 +389,18 @@ hr {
   padding-right: 0px;
   cursor: pointer;
   font-size: 18px;
+}
+
+.view-modal h4 {
+  margin-bottom: 0px;
+  padding-top: 15px;
+  padding-right: 0px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.view-modal .close {
+  text-align: right;
 }
 
 .modal h2 {
@@ -392,6 +412,14 @@ hr {
 
 .row > input:focus {
   outline: none;
+}
+
+.viewModal {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .editModal {
@@ -412,7 +440,7 @@ hr {
   margin-top: 10px;
 }
 
-.editModal h2, .createModal h2 {
+.viewModal h2, .editModal h2, .createModal h2 {
   text-align: center;
 }
 
@@ -435,6 +463,17 @@ hr {
   font-size: 16px;
   margin-top: 20px;
   border: none;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.editModal form input[type=checkbox] {
+  width: 10px;
+  height: 10px;
 }
 
 /*Routes*/
