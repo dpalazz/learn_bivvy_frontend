@@ -10,75 +10,51 @@ app.config(['$routeProvider', function($routeProvider){
     controllerAs: 'ctrl'
   });
 
-  $routeProvider.when('/gettingstarted', {
-    templateUrl: 'pages/gettingstarted.html',
-    controller: 'GettingStartedController',
+  $routeProvider.when('/potablewater', {
+    templateUrl: 'pages/potablewater.html',
+    controller: 'PotableWaterController',
     controllerAs: 'ctrl'
   });
 
-  $routeProvider.when('/sewer', {
-    templateUrl: 'pages/sewer.html',
-    controller: 'SewerController',
+  $routeProvider.when('/sanitarysewer', {
+    templateUrl: 'pages/sanitarysewer.html',
+    controller: 'SanitarySewer',
     controllerAs: 'ctrl'
   });
-  //
-  // $routeProvider.when('/pagetwo', {
-  //   templateUrl: 'pagetwo.html',
-  //   controller: 'PageTwoController',
-  //   controllerAs: 'ctrl'
-  // });
-  //
-  // $routeProvider.when('/pagethree', {
-  //   templateUrl: 'pagethree.html',
-  //   controller: 'PageThreeController',
-  //   controllerAs: 'ctrl'
-  // });
-  //
-  // $routeProvider.when('/pagefour', {
-  //   templateUrl: 'pagefour.html',
-  //   controller: 'PageFourController',
-  //   controllerAs: 'ctrl'
-  // });
-  //
-  // $routeProvider.when('/pagefive', {
-  //   templateUrl: 'pagefive.html',
-  //   controller: 'PageFiveController',
-  //   controllerAs: 'ctrl'
-  // });
-  //
-  // $routeProvider.when('/pagesix', {
-  //   templateUrl: 'pagesix.html',
-  //   controller: 'PageSixController',
-  //   controllerAs: 'ctrl'
-  // });
-  //
-  // $routeProvider.when('/pageseven', {
-  //   templateUrl: 'pageseven.html',
-  //   controller: 'PageSevenController',
-  //   controllerAs: 'ctrl'
-  // });
-  //
-  // $routeProvider.when('/pageeight', {
-  //   templateUrl: 'pageeight.html',
-  //   controller: 'PageEightController',
-  //   controllerAs: 'ctrl'
-  // });
-  //
-  // $routeProvider.when('/pagenine', {
-  //   templateUrl: 'pagenine.html',
-  //   controller: 'PageNineController',
-  //   controllerAs: 'ctrl'
-  // });
-  //
-  // $routeProvider.when('/pageten', {
-  //   templateUrl: 'pageten.html',
-  //   controller: 'PageTenController',
-  //   controllerAs: 'ctrl'
-  // });
-  //
-  // $routeProvider.otherwise({
-  //   redirectTo: '/'
-  // });
+
+  $routeProvider.when('/stormwater', {
+    templateUrl: 'stormwater.html',
+    controller: 'StormwaterController',
+    controllerAs: 'ctrl'
+  });
+
+  $routeProvider.when('/gas', {
+    templateUrl: 'gas.html',
+    controller: 'GasController',
+    controllerAs: 'ctrl'
+  });
+
+  $routeProvider.when('/electric', {
+    templateUrl: 'electric.html',
+    controller: 'ElectricController',
+    controllerAs: 'ctrl'
+  });
+
+  $routeProvider.when('/communications', {
+    templateUrl: 'communications.html',
+    controller: 'CommunicationsController',
+    controllerAs: 'ctrl'
+  });
+
+  $routeProvider.when('/na', {
+    templateUrl: 'na.html',
+    controller: 'NaController',
+    controllerAs: 'ctrl'
+  });
+
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
 }]);
 
 // =====================================
@@ -103,6 +79,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.clickedService = null;
   this.showListOfLessons = false;
   this.editModal = false;
+  this.createModal = false;
   this.showPages = () => {
     this.pagesDisplay = true
     this.lessonsDisplay = false;
@@ -128,16 +105,22 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.openLinkForm = () => {
     this.linkForm = true;
   }
-  this.getAllServices = () => {
+  this.getAllServices = (service) => {
     $http({
       method: 'GET',
       url: this.url + '/services'
     }).then(response => {
       this.services = response.data
+      for (let i = 0; i < this.services.length; i++) {
+        if (this.services[i].id == service.id) {
+          this.clickedService = this.services[i]
+        }
+      }
+      console.log('hi');
     }).catch(reject => {
       console.log('Catch: ', reject);
     });
-  }
+  };
   this.getAllLessons = () => {
     $http({
       method: 'GET',
@@ -184,9 +167,6 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   }).then(response => {
     this.lessons = response.data
     console.log(this.lessons);
-    // for (let i = 0; i < this.lessons.length; i++) {
-      // this.serviceTag.push(this.lessons[i].services)
-    // }
   }).catch(reject => {
     console.log('Catch: ', reject);
   });
@@ -201,7 +181,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     console.log('Catch: ', reject);
   });
 
-  // Lessonplans Data// Services Data
+  // Lessonplans Data
   $http({
     method: 'GET',
     url: this.url + '/lessonplans'
@@ -220,8 +200,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
         newServiceId = this.services[i].id
       }
     }
-
-    // lesson to post
+    // ...posting lesson
     $http({
       method: 'POST',
       url: this.url + '/lessons',
@@ -231,11 +210,8 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       this.lessons.push(response.data.lesson);
       this.currentLesson = this.lessons[this.lessons.length - 1];
       this.lessonForm = false;
-    }).catch(reject => {
-      console.log('Catch', reject);
-    });
-
-      // then lessonplan posts
+      this.formDataLesson = {};
+      // ...then posting lessonplan
       $http({
         method: 'POST',
         url: this.url + '/lessonplans',
@@ -245,7 +221,10 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       }).catch(reject => {
         console.log('Catch', reject);
       });
-    };
+    }).catch(reject => {
+      console.log('Catch', reject);
+    });
+  };
 
   // Create lessonplan
   this.addLessonToService = (service, lessonID) => {
@@ -254,12 +233,12 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       url: this.url + '/lessonplans',
       data: {service_id: service.id, lesson_id: lessonID}
     }).then(response => {
-      this.getAllLessons();
+      this.getAllServices(service);
       this.showListOfLessons = false;
     }).catch(reject => {
       console.log('Catch', reject);
     });
-  }
+  };
 
   // Create Service
   this.addService = () => {
@@ -289,20 +268,6 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     });
   };
 
-  // Edit Service
-  this.editService = (service) => {
-    $http({
-      method: 'PUT',
-      url: this.url + '/services/' + service.id,
-      data: this.formDataService
-    }).then(response => {
-      this.getAllServices();
-      this.form = false;
-    }).catch(reject => {
-      console.log('Catch', reject)
-    });
-  };
-
   // Remove Lesson from Service
   this.removeLesson = (service, lesson) => {
     $http({
@@ -315,23 +280,20 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
           this.lessonplanId = this.allLessonplans[i]
         }
       }
-      console.log(this.lessonplanId.id);
+      // ...then remove lessonplan association
       $http({
         method: 'DELETE',
         url: this.url + '/lessonplans/' + this.lessonplanId.id,
         data: {service_id: service.id, lesson_id: lesson.id}
       }).then(response => {
-        this.getAllLessons();
+        this.getAllServices(service);
       }).catch(reject => {
         console.log('Catch', reject);
       });
-
     }).catch(reject => {
       console.log('Catch', reject);
     });
-
-
-  }
+  };
 
   // Delete Lesson
   this.deleteLesson = (lesson) => {
@@ -357,74 +319,74 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       console.log('Catch', reject);
     });
   };
+
+  // Edit Service
+  this.editService = (service) => {
+    $http({
+      method: 'PUT',
+      url: this.url + '/services/' + service.id,
+      data: this.formDataService
+    }).then(response => {
+      this.getAllServices();
+      this.form = false;
+    }).catch(reject => {
+      console.log('Catch', reject)
+    });
+  };
 }]);
 
 // ********************Getting Started********************
-app.controller('GettingStartedController', ['$http', '$sce', function($http, $sce){
+app.controller('PotableWaterController', ['$http', '$sce', function($http, $sce){
 
   // API
   this.url = 'http://localhost:3000'
 
   // Global variables
   this.lessonUrl = null;
-  this.currentUrl = null;
+  this.currentUrl = [];
 
   // Lesson Data
   $http({
     method: 'GET',
-    url: this.url + '/lessons'
+    url: this.url + '/services/9'
   }).then(response => {
-    this.lessons = response.data
-    for (let i = 0; i < this.lessons.length; i++) {
-      this.currentUrl = this.lessons[i].video_url
+    this.services = response.data.lessons;
+
+    for (let i = 0; i < this.services.length; i++) {
+      console.log(this.services[i].video_url);
+    this.currentUrl.push($sce.trustAsResourceUrl(this.services[i].video_url))
     }
-    console.log($sce);
-    this.lessonUrl = $sce.trustAsResourceUrl(this.currentUrl);
+    // ***********
+
+
+    // ***********
   }).catch(reject => {
     console.log('Catch: ', reject);
   });
 }]);
 
-app.controller('SewerController', ['$http', function($http, $scope){
-
+app.controller('SanitarySewerController', ['$http', '$sce', function($http, $sce){
 }]);
 
-// ********************Sewer********************
-app.controller('SewerController', function(){
+app.controller('StormwaterController', ['$http', '$sce', function($http, $sce){
   this.test = 'test';
-});
-//
-// app.controller('PageThreeController', function(){
-//   this.test = 'test';
-// });
-//
-// app.controller('PageFourController', function(){
-//   this.test = 'test';
-// });
-//
-// app.controller('PageFiveController', function(){
-//   this.test = 'test';
-// });
-//
-// app.controller('PageSixController', function(){
-//   this.test = 'test';
-// });
-//
-// app.controller('PageSevenController', function(){
-//   this.test = 'test';
-// });
-//
-// app.controller('PageEightController', function(){
-//   this.test = 'test';
-// });
-//
-// app.controller('PageNineController', function(){
-//   this.test = 'test';
-// });
-//
-// app.controller('PageTenController', function(){
-//   this.test = 'test';
-// });
+}]);
+
+app.controller('GasController', ['$http', '$sce', function($http, $sce){
+  this.test = 'test';
+}]);
+
+app.controller('ElectricController', ['$http', '$sce', function($http, $sce){
+  this.test = 'test';
+}]);
+
+app.controller('CommunicationsController', ['$http', '$sce', function($http, $sce){
+  this.test = 'test';
+}]);
+
+app.controller('NaController', ['$http', '$sce', function($http, $sce){
+  this.test = 'test';
+}]);
 
 
 
