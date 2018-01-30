@@ -124,11 +124,13 @@
               <input type="text" ng-model="ctrl.formDataLesson.description" placeholder="{{ctrl.thisLesson.description}}"><br/>
               <label for="video_url">Video URL</label><br/>
               <input type="text" ng-model="ctrl.formDataLesson.video_url" placeholder="{{ctrl.thisLesson.video_url}}"><br/>
+              <!-- Create lessonplan associations -->
               <div class="checkbox">
                 <div ng-repeat="service in ctrl.services">
                   <div class="checkbox-service-name">{{service.name}}</div>
                 </div>
               </div>
+              <!-- End create lessonplan assoc. -->
               <input ng-click="ctrl.editModal = false" type="submit"/>
             </div>
           </form>
