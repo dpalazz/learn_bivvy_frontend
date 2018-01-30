@@ -226,6 +226,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
       data: this.formDataLesson
     }).then(response => {
       this.getAllLessons();
+      this.getAllServices();
       this.lessons.push(response.data.lesson);
       this.currentLesson = this.lessons[this.lessons.length - 1];
       this.lessonForm = false;
@@ -237,6 +238,7 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
         data: {service_id: newServiceId, lesson_id: this.currentLesson.id}
       }).then(response => {
         this.getAllLessons();
+        this.getAllServices();
       }).catch(reject => {
         console.log('Catch', reject);
       });

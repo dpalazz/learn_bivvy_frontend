@@ -16,6 +16,15 @@ html, body {
   margin-top: 300px;
 }
 
+.login-register h4 {
+  text-align: left;
+}
+
+.login-register h4:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .login-screen form input {
   width: 330px;
 	height: 45px;
@@ -478,6 +487,28 @@ hr {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.checkbox .checkbox-service-name {
+  width: 180px;
+  height: 30px;
+  border: 1px solid #a3a7aa;
+  border-radius: 2px;
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.checkbox-service-name {
+  vertical-align: middle;
+  color: #a3a7aa;
+}
+.checkbox .checkbox-service-name:hover {
+  cursor: pointer;
+  border: 2px solid #79c212;
+  color: #79c212;
 }
 
 .editModal form input[type=checkbox] {
