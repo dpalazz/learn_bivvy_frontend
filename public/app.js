@@ -393,7 +393,7 @@ app.controller('PotableWaterController', ['$http', '$sce', function($http, $sce)
   // Lesson Data
   $http({
     method: 'GET',
-    url: this.url + '/services/9'
+    url: this.url + '/services/1'
   }).then(response => {
     this.serviceLessons = response.data.lessons;
     for (let i = 0; i < this.serviceLessons.length; i++) {
