@@ -149,8 +149,32 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     this.viewedLesson = !this.viewedLesson
     this.clickedLesson = lesson
   };
-  this.checkedService = (service) => {
-    console.log(service);
+  this.checkedService = (service, lesson) => {
+    console.log(service, lesson);
+    this.checked = !this.checked
+    // this.serviceId = 0;
+    let arrOfCheckedServices = [];
+    arrOfCheckedServices.push(service);
+    console.log(arrOfCheckedServices);
+    for (let i = 0; i < arrOfCheckedServices.length; i++) {
+      if (service = arrOfCheckedServices[i + 1]) {
+        arrOfCheckedServices.splice(arrOfCheckedServices[i])
+        this.deleteLessonplanNow(service);
+      } else {
+        console.log(arrOfCheckedServices[0]);
+        this.serviceId = arrOfCheckedServices[0].id
+      }
+    }
+    $http({
+      method: 'POST',
+      url: this.url + '/lessonplans',
+      data: {service_id: this.serviceId, lesson_id: lesson.id}
+    }).then(response => {
+      this.getAllLessons();
+      this.getAllServices();
+    }).catch(reject => {
+      console.log('Catch', reject);
+    });
   };
 
   // User login
@@ -281,9 +305,6 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
 
   // Edit Lesson
   this.editLesson = (lesson) => {
-    console.log(this.formDataLesson);
-
-
     $http({
       method: 'PUT',
       url: this.url + '/lessons/' + lesson.id,
