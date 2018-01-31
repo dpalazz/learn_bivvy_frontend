@@ -21,8 +21,8 @@
     <div class="login-register">
       <h4 ng-click="ctrl.signInScreen = true; ctrl.registerScreen = false">Log in</h4>
     </div>
-  <div>{{ctrl.error}}</div>
-</div>
+    <div>{{ctrl.error}}</div>
+  </div>
 </div>
 
 <!-- If user is logged in -->
@@ -127,7 +127,7 @@
               <!-- Create lessonplan associations -->
               <div class="checkbox">
                 <div ng-repeat="service in ctrl.services">
-                  <div class="checkbox-service-name">{{service.name}}</div>
+                  <div ng-click="ctrl.checked = !ctrl.checked; ctrl.checkedService(service)" ng-class="ctrl.checked? 'checked' : 'checkbox-service-name'">{{service.name}}</div>
                 </div>
               </div>
               <!-- End create lessonplan assoc. -->

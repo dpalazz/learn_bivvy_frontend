@@ -498,6 +498,19 @@ hr {
   justify-content: flex-start;
 }
 
+.checked {
+  background-color: #79c212;
+  color: white;
+  border: none;
+  width: 180px;
+  height: 32px;
+  border-radius: 2px;
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
 .checkbox .checkbox-service-name {
   width: 180px;
   height: 30px;

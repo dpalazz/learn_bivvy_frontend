@@ -64,12 +64,13 @@ app.config(['$routeProvider', function($routeProvider){
 // ********************Main********************
 app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce){
   // API
-  // this.url = 'http://localhost:3000'
-  this.url = 'https://learn-bivvy-api.herokuapp.com'
+  this.url = 'http://localhost:3000'
+  // this.url = 'https://learn-bivvy-api.herokuapp.com'
 
 
   // Global variables
   this.message = null;
+  this.checked = false;
   this.pagesDisplay = true;
   this.lessonsDisplay = false;
   this.signInScreen = true;
@@ -88,32 +89,32 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.register = () => {
     this.signInScreen = false;
     this.registerScreen = true;
-  }
+  };
   this.showPages = () => {
     this.pagesDisplay = true
     this.lessonsDisplay = false;
     this.serviceInView = false;
-  }
+  };
   this.showLessons = () => {
     this.lessonsDisplay = true;
     this.pagesDisplay = false;
     this.serviceInView = false;
-  }
+  };
   this.addLessonDisplayList = () => {
     this.showListOfLessons = !this.showListOfLessons
-  }
+  };
   this.openForm = () => {
     this.form = true;
-  }
+  };
   this.openAddServiceForm = () => {
     this.serviceForm = true;
-  }
+  };
   this.openAddLessonForm = () => {
     this.lessonForm = true;
-  }
+  };
   this.openLinkForm = () => {
     this.linkForm = true;
-  }
+  };
   this.getAllServices = (service) => {
     $http({
       method: 'GET',
@@ -147,6 +148,9 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.viewLesson = (lesson) => {
     this.viewedLesson = !this.viewedLesson
     this.clickedLesson = lesson
+  };
+  this.checkedService = (service) => {
+    console.log(service);
   };
 
   // User login
@@ -278,6 +282,8 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   // Edit Lesson
   this.editLesson = (lesson) => {
     console.log(this.formDataLesson);
+
+
     $http({
       method: 'PUT',
       url: this.url + '/lessons/' + lesson.id,
@@ -361,8 +367,8 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
 app.controller('PotableWaterController', ['$http', '$sce', function($http, $sce){
 
   // API
-  // this.url = 'http://localhost:3000'
-  this.url = 'https://learn-bivvy-api.herokuapp.com'
+  this.url = 'http://localhost:3000'
+  // this.url = 'https://learn-bivvy-api.herokuapp.com'
 
   // Global variables
   this.lessonUrl = null;
