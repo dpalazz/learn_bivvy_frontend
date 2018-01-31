@@ -67,7 +67,6 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
   this.url = 'http://localhost:3000'
   // this.url = 'https://learn-bivvy-api.herokuapp.com'
 
-
   // Global variables
   this.message = null;
   this.checked = false;
@@ -149,8 +148,28 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     this.viewedLesson = !this.viewedLesson
     this.clickedLesson = lesson
   };
-  this.checkedService = (service) => {
-    console.log(service);
+  this.checkedService = (service, lesson) => {
+    this.checked = !this.checked
+    // this.serviceId = 0;
+    let arrOfCheckedServices = [];
+    arrOfCheckedServices.push(service);
+    for (let i = 0; i < arrOfCheckedServices.length; i++) {
+      if (service = arrOfCheckedServices[i + 1]) {
+        console.log('Need to delete');
+      } else {
+        this.serviceId = arrOfCheckedServices[0].id
+      }
+    }
+    $http({
+      method: 'POST',
+      url: this.url + '/lessonplans',
+      data: {service_id: this.serviceId, lesson_id: lesson.id}
+    }).then(response => {
+      this.getAllLessons();
+      this.getAllServices();
+    }).catch(reject => {
+      console.log('Catch', reject);
+    });
   };
 
   // User login
@@ -281,9 +300,6 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
 
   // Edit Lesson
   this.editLesson = (lesson) => {
-    console.log(this.formDataLesson);
-
-
     $http({
       method: 'PUT',
       url: this.url + '/lessons/' + lesson.id,

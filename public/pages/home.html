@@ -127,11 +127,11 @@
               <!-- Create lessonplan associations -->
               <div class="checkbox">
                 <div ng-repeat="service in ctrl.services">
-                  <div ng-click="ctrl.checked = !ctrl.checked; ctrl.checkedService(service)" ng-class="ctrl.checked? 'checked' : 'checkbox-service-name'">{{service.name}}</div>
+                  <div ng-click="ctrl.checkedService(service, ctrl.thisLesson)" ng-class="ctrl.checked? 'checked' : 'checkbox-service-name'">{{service.name}}</div>
                 </div>
               </div>
               <!-- End create lessonplan assoc. -->
-              <input ng-click="ctrl.editModal = false" type="submit"/>
+              <input ng-click="ctrl.editModal = false; ctrl.checked = false" type="submit"/>
             </div>
           </form>
         </div>
