@@ -64,8 +64,8 @@ app.config(['$routeProvider', function($routeProvider){
 // ********************Main********************
 app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce){
   // API
-  this.url = 'http://localhost:3000'
-  // this.url = 'https://learn-bivvy-api.herokuapp.com'
+  // this.url = 'http://localhost:3000'
+  this.url = 'https://learn-bivvy-api.herokuapp.com'
 
   // Global variables
   this.message = null;
@@ -284,20 +284,6 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     });
   };
 
-  // Create Service
-  this.addService = () => {
-    $http({
-      method: 'POST',
-      url: this.url + '/services',
-      data: this.formDataService
-    }).then(response => {
-      this.getAllServices();
-      this.serviceForm = false;
-    }).catch(reject => {
-      console.log('Catch', reject);
-    });
-  };
-
   // Edit Lesson
   this.editLesson = (lesson) => {
     $http({
@@ -352,6 +338,20 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
     });
   };
 
+  // Create Service
+  this.addService = () => {
+    $http({
+      method: 'POST',
+      url: this.url + '/services',
+      data: this.formDataService
+    }).then(response => {
+      this.getAllServices();
+      this.serviceForm = false;
+    }).catch(reject => {
+      console.log('Catch', reject);
+    });
+  };
+
   // Delete Service
   this.deleteService = (service) => {
     $http({
@@ -383,8 +383,8 @@ app.controller('MainController', ['$http', '$sce', function($http, $scope, $sce)
 app.controller('PotableWaterController', ['$http', '$sce', function($http, $sce){
 
   // API
-  this.url = 'http://localhost:3000'
-  // this.url = 'https://learn-bivvy-api.herokuapp.com'
+  // this.url = 'http://localhost:3000'
+  this.url = 'https://learn-bivvy-api.herokuapp.com'
 
   // Global variables
   this.lessonUrl = null;
